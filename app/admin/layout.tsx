@@ -5,8 +5,8 @@ import { isAdmin, auth } from "@/lib/auth/helper";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Administration Field4u",
-  description: "Gestion administrative de la plateforme Field4u",
+  title: "Administration Field4U",
+  description: "Gestion administrative de la plateforme Field4U",
 };
 
 export default async function RouteLayout(

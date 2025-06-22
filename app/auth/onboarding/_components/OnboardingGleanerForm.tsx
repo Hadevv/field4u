@@ -243,13 +243,13 @@ export function OnboardingGleanerForm({ onSubmit }: { onSubmit: () => void }) {
             </FormControl>
             <div className="space-y-1 leading-none">
               <FormLabel>
-                j'accepte les{" "}
+                j&apos;accepte les{" "}
                 <Link
                   href="/terms"
                   className="text-primary underline"
                   target="_blank"
                 >
-                  conditions d'utilisation
+                  conditions d&apos;utilisation
                 </Link>{" "}
                 et la{" "}
                 <Link

@@ -48,23 +48,22 @@ export const createAnnouncementAction = authAction
 
       let imageUrls: string[] = input.images || [];
 
-      if (input.imageFiles) {
-        const files = input.imageFiles.getAll("files") as File[];
-
-        if (files.length > 0) {
-          try {
-            const uploadedUrls = await uploadManager.uploadFiles(files, {
+      if (input.imageFiles && Array.isArray(input.imageFiles)) {
+        try {
+          const uploadedUrls = await uploadManager.uploadFiles(
+            input.imageFiles,
+            {
               maxSizeMB: 2,
-            });
-            imageUrls = [...imageUrls, ...uploadedUrls];
-          } catch (error) {
-            console.error("Erreur lors de l'upload des images:", error);
-            throw new ActionError(
-              error instanceof Error
-                ? error.message
-                : "Erreur lors de l'upload des images",
-            );
-          }
+            },
+          );
+          imageUrls = [...imageUrls, ...uploadedUrls];
+        } catch (error) {
+          console.error("Erreur lors de l'upload des images:", error);
+          throw new ActionError(
+            error instanceof Error
+              ? error.message
+              : "Erreur lors de l'upload des images",
+          );
         }
       }
 

@@ -1,5 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
+  output          = "../src/generated/client"
   previewFeatures = ["postgresqlExtensions"]
 }
 
@@ -302,4 +303,58 @@ enum CropSeason {
 enum MessageType {
   GROUP
   OWNER
+}
+
+model ParticipationPayment {
+  id              String         @id @default(nanoid(21)) @db.Char(21)
+  participationId String?        @map("participation_id") @db.Char(21)
+  amount          Decimal        @db.Decimal(10, 2)
+  paymentIntentId String         @unique @map("payment_intent_id") @db.VarChar(255)
+  status          String         @db.VarChar(50)
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+  participation   Participation? @relation(fields: [participationId], references: [id], onDelete: SetNull)
+
+  @@map("participation_payments")
+}
+
+// next-auth ne pas toucher à ce model
+model Account {
+  id                    String  @id @default(nanoid(21)) @db.Char(21)
+  userId                String  @db.Char(21)
+  type                  String
+  provider              String
+  providerAccountId     String
+  refreshTokenExpiresIn String?
+  refresh_token         String?
+  access_token          String?
+  expires_at            Int?
+  token_type            String?
+  scope                 String?
+  id_token              String?
+  session_state         String?
+  user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Session {
+  id           String   @id @default(nanoid(21)) @db.Char(21)
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id") @db.Char(21)
+  expires      DateTime
+  createdAt    DateTime @default(now()) @map("created_at")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }

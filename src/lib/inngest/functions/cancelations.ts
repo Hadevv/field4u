@@ -4,7 +4,7 @@ import { sendEmail } from "@/lib/mail/sendEmail";
 import GleaningCanceledEmail from "@email/GleaningCanceledEmail";
 import { getServerUrl } from "@/lib/server-url";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export const cancelationsFunction = inngest.createFunction(
   { id: "gleaning-cancelations" },

@@ -2,7 +2,7 @@ import { authRoute, RouteError } from "@/lib/safe-route";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 // rejoindre un glanage en tant qu'utilisateur
 export const POST = authRoute

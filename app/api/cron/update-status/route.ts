@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { GleaningStatus } from "@prisma/client";
+import { GleaningStatus } from "@/generated/client";
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
 import { isDateBetween, isPastDate } from "@/lib/format/date";

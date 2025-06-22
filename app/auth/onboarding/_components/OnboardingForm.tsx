@@ -2,12 +2,14 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import { OnboardingRoleStep } from "./OnboardingRoleStep";
 import { OnboardingFarmerForm } from "./OnboardingFarmerForm";
 import { OnboardingGleanerForm } from "./OnboardingGleanerForm";
 import { OnboardingRulesStep } from "./OnboardingRulesStep";
 import { Logo } from "@/components/svg/Logo";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 export default function OnboardingForm() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,13 +21,26 @@ export default function OnboardingForm() {
   };
 
   const handleFormSubmit = () => {
-    setCurrentStep(3);
+    if (currentStep === 2) {
+      setCurrentStep(3);
+    }
   };
 
   return (
     <div className="flex min-h-screen flex-col items-center p-4">
       <div className="mb-8 flex items-center gap-3">
         <Logo />
+      </div>
+
+      <div className="mb-4 flex items-center justify-center gap-2">
+        {[1, 2, 3].map((step) => (
+          <div
+            key={step}
+            className={`h-2 w-16 rounded-full ${
+              currentStep >= step ? "bg-primary" : "bg-muted"
+            }`}
+          />
+        ))}
       </div>
 
       <Card className="w-full max-w-lg shadow-lg">
@@ -43,6 +58,14 @@ export default function OnboardingForm() {
                 ← Changer de rôle
               </button>
 
+              <Alert className="mb-4">
+                <Info className="h-4 w-4" />
+                <AlertDescription>
+                  Après cette étape, vous devrez accepter les règles de conduite
+                  pour finaliser votre inscription.
+                </AlertDescription>
+              </Alert>
+
               {selectedRole === "FARMER" ? (
                 <OnboardingFarmerForm onSubmit={handleFormSubmit} />
               ) : (
@@ -52,7 +75,15 @@ export default function OnboardingForm() {
           )}
 
           {currentStep === 3 && selectedRole && (
-            <OnboardingRulesStep role={selectedRole} />
+            <div className="space-y-4">
+              <button
+                onClick={() => setCurrentStep(2)}
+                className="mb-4 text-sm text-muted-foreground hover:underline"
+              >
+                ← Retour au formulaire
+              </button>
+              <OnboardingRulesStep role={selectedRole} />
+            </div>
           )}
         </CardContent>
       </Card>

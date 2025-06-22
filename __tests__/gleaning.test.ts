@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mockPrisma } from "./setup";
 import { joinGleaningAction } from "../app/announcements/[slug]/gleaning/_actions/gleaning.action";
-import { GleaningStatus } from "@prisma/client";
+import { GleaningStatus } from "@/generated/client";
 
 // mock des modules nécessaires
 vi.mock(

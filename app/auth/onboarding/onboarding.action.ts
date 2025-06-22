@@ -29,7 +29,6 @@ export const createFarmAction = authAction
           postalCode: input.postalCode,
           termsAcceptedAt: input.termsAcceptedAt,
           acceptGeolocation: input.acceptGeolocation,
-          onboardingCompleted: true,
         },
       });
 
@@ -47,14 +46,7 @@ export const createFarmAction = authAction
         },
       });
 
-      // Mettre à jour le cache d'onboarding
-      const cookieStore = await cookies();
-      cookieStore.set("onboardingCompleted", "true", {
-        maxAge: 60 * 60 * 24 * 7, // 7 jours
-        path: "/",
-      });
-
-      return { message: "inscription terminée" };
+      return { message: "informations enregistrées" };
     } catch (error) {
       console.error(error);
       throw new ActionError("échec de l'inscription");
@@ -80,18 +72,11 @@ export const createGleanerAction = authAction
           postalCode: input.postalCode,
           termsAcceptedAt: input.termsAcceptedAt,
           acceptGeolocation: input.acceptGeolocation,
-          onboardingCompleted: true,
+          // onboardingCompleted sera défini lors de l'acceptation des règles
         },
       });
 
-      // Mettre à jour le cache d'onboarding
-      const cookieStore = await cookies();
-      cookieStore.set("onboardingCompleted", "true", {
-        maxAge: 60 * 60 * 24 * 7, // 7 jours
-        path: "/",
-      });
-
-      return { message: "inscription terminée" };
+      return { message: "informations enregistrées" };
     } catch (error) {
       console.error(error);
       throw new ActionError("échec de l'inscription");
@@ -112,7 +97,15 @@ export const acceptRulesAction = authAction
         where: { id: userId },
         data: {
           rulesAcceptedAt: new Date(),
+          onboardingCompleted: true, // Marquer l'onboarding comme terminé ici
         },
+      });
+
+      // Mettre à jour le cache d'onboarding
+      const cookieStore = await cookies();
+      cookieStore.set("onboardingCompleted", "true", {
+        maxAge: 60 * 60 * 24 * 7, // 7 jours
+        path: "/",
       });
 
       return { message: "règles acceptées" };

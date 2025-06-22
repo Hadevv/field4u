@@ -36,7 +36,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import { Review, User as UserType } from "@prisma/client";
+import { Review, User as UserType } from "@/generated/client";
 
 type GleaningDetailsProps = {
   gleaning: any;

@@ -33,7 +33,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function PieChartDistribution({ data }: { data: DistributionData[] }) {
-  // Couleurs plus douces et harmonieuses
   const softColors = [
     "hsl(171, 70%, 50%, 0.8)", // turquoise adouci
     "hsl(340, 65%, 60%, 0.8)", // rose adouci

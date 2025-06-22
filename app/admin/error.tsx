@@ -30,7 +30,7 @@ export default function RouteError({ error, reset }: ErrorParams) {
             </CardTitle>
           </CardHeader>
           <CardFooter>
-            <Button onClick={reset}>Try again</Button>
+            <Button onClick={reset}>Réessayer</Button>
           </CardFooter>
         </Card>
       </LayoutContent>

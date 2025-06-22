@@ -9,12 +9,13 @@ import type { PageParams } from "@/types/next";
 import { Suspense } from "react";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/auth/helper";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@/generated/client";
 import { GleaningsTableContainer } from "@/features/admin/gleanings/GleaningsTableContainer";
+import { convertDecimal } from "@/lib/format/decimal";
 
 export const metadata = {
-  title: "Gestion des glanages | Field4u Admin",
-  description: "Gérez les sessions de glanage de la plateforme Field4u",
+  title: "Gestion des glanages | Field4U Admin",
+  description: "Gérez les sessions de glanage de la plateforme Field4U",
 };
 
 export default async function GleaningsPage(props: PageParams<{}>) {
@@ -108,7 +109,7 @@ export default async function GleaningsPage(props: PageParams<{}>) {
 
   const totalPages = Math.ceil(totalGleanings / pageSize);
 
-  const gleanings = await prisma.gleaning.findMany({
+  const rawGleanings = await prisma.gleaning.findMany({
     where: whereClause,
     orderBy: [{ createdAt: "desc" }],
     skip: (page - 1) * pageSize,
@@ -135,10 +136,12 @@ export default async function GleaningsPage(props: PageParams<{}>) {
     },
   });
 
+  const gleanings = convertDecimal(rawGleanings);
+
   return (
     <Layout size="full">
       <LayoutHeader>
-        <LayoutTitle>gestion des glanages</LayoutTitle>
+        <LayoutTitle>Gestion des glanages</LayoutTitle>
       </LayoutHeader>
       <LayoutContent>
         <Suspense>

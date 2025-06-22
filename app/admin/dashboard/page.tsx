@@ -117,7 +117,7 @@ export default async function RoutePage(
   return (
     <Layout size="full">
       <LayoutHeader>
-        <LayoutTitle>dashboard</LayoutTitle>
+        <LayoutTitle>Tableau de Bord</LayoutTitle>
       </LayoutHeader>
       <LayoutContent className="flex flex-col gap-6">
         <StatisticsCards

@@ -86,17 +86,17 @@ export function DonationSection({
       <CardHeader className="bg-muted/20">
         <CardTitle className="flex items-center gap-2 text-lg font-semibold text-card-foreground">
           <HandCoins className="h-5 w-5" />
-          soutenez cette initiative
+          Soutenez cette initiative
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          faites un don pour soutenir le glanage et l'agriculture locale
+          Faites un don pour soutenir le glanage et l&apos;agriculture locale
         </CardDescription>
       </CardHeader>
       <CardContent className="p-4 pt-6">
         <div className="p-4 bg-muted/10 rounded-lg border border-border text-center mb-4">
           {suggestedPrice > 0 && (
             <p className="text-sm mb-3 text-foreground">
-              prix suggéré: <span className="font-bold">{suggestedPrice}€</span>
+              Prix suggéré: <span className="font-bold">{suggestedPrice}€</span>
             </p>
           )}
           <div className="flex items-center space-x-2 mb-3">
@@ -127,16 +127,16 @@ export function DonationSection({
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
-                    montant minimum: 1€
+                    Montant minimum: 1€
                     <br />
-                    montant maximum: 500€
+                    Montant maximum: 500€
                   </p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
           <p className="text-xs text-muted-foreground">
-            ce don contribue à maintenir la plateforme et aide les agriculteurs
+            Ce don contribue à maintenir la plateforme et aide les agriculteurs
             locaux
           </p>
         </div>
@@ -148,8 +148,8 @@ export function DonationSection({
           disabled={checkoutMutation.isPending || !isValidAmount}
         >
           {checkoutMutation.isPending
-            ? "traitement..."
-            : `payer ${isValidAmount ? amount : "0"}€`}
+            ? "Traitement..."
+            : `Payer ${isValidAmount ? amount : "0"}€`}
         </Button>
       </CardFooter>
     </Card>

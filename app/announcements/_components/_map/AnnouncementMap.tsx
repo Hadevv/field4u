@@ -137,16 +137,16 @@ export function AnnouncementMap({
     };
   };
 
-  const askForGeolocation = () => {
+  const askForGeolocation = (forceShow = false) => {
     console.log("askForGeolocation appelée");
 
-    // Ne pas demander la géolocalisation en mode test - utiliser des indicateurs plus fiables
     if (
+      !forceShow &&
       typeof window !== "undefined" &&
-      (window.navigator.webdriver || // Détecte Playwright/Selenium
-        window.location.hostname === "localhost" || // En développement
-        process.env.NODE_ENV === "test" || // En mode test
-        "__playwright" in window || // Playwright spécifique
+      (window.navigator.webdriver ||
+        window.location.hostname === "localhost" ||
+        process.env.NODE_ENV === "test" ||
+        "__playwright" in window ||
         "__e2e_test" in window)
     ) {
       // Flag custom qu'on peut ajouter
@@ -202,7 +202,6 @@ export function AnnouncementMap({
     console.log("Demande de position en cours...");
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log("Position obtenue:", position);
         handleGeolocationSuccess(position);
       },
       (error) => {
@@ -752,8 +751,8 @@ export function AnnouncementMap({
                 return;
               }
 
-              // Toujours passer par askForGeolocation qui gère tous les cas
-              askForGeolocation();
+              // Forcer l'affichage de la modal même en mode développement
+              askForGeolocation(true);
             }}
             className="bg-secondary hover:bg-secondary/80"
             title="Afficher ma position"

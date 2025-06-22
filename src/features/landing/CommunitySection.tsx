@@ -24,9 +24,9 @@ export function CommunitySection() {
             Rejoignez la communauté !
           </h2>
           <p className="mb-8 text-lg text-muted-foreground">
-            Inscrivez vous dès maintenant pour accéder à toutes les
-            fonctionnalités de Field4U : créez votre profil, créer une annonce,
-            participer à une annonce, envoyez des photos de vos glanages, et
+            Inscrivez-vous dès maintenant pour accéder à toutes les
+            fonctionnalités de Field4U : Créez votre profil, Créez une annonce,
+            Participez à une annonce, Envoyez des photos de vos glanages, et
             bien plus encore.
           </p>
           <div className="relative z-10 flex flex-col justify-center gap-4 sm:flex-row">
@@ -41,11 +41,11 @@ export function CommunitySection() {
                 className="cursor-not-allowed text-base opacity-70"
                 disabled
               >
-                Vous etes déjà inscrit
+                Vous êtes déjà inscrit
               </Button>
             ) : (
               <Button size="sm" asChild>
-                <Link href="/auth/signin">Inscrivez vous Gratuitement</Link>
+                <Link href="/auth/signin">Inscrivez-vous Gratuitement</Link>
               </Button>
             )}
           </div>

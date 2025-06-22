@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { InlineTooltip } from "@/components/ui/tooltip";
 import { SubmitButton } from "@/features/form/SubmitButton";
-import type { User } from "@prisma/client";
+import type { User } from "@/generated/client";
 import { useMutation } from "@tanstack/react-query";
 import { BadgeCheck } from "lucide-react";
 import { useRouter } from "next/navigation";

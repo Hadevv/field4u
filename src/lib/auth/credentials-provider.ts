@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import bcrypt from "bcrypt";
 import { nanoid } from "nanoid";
 import type { NextAuthConfig } from "next-auth";

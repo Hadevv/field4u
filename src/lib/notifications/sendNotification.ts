@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { pusherServer } from "@/lib/pusher/pusher-server";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export async function sendNotificationToUser(
   userId: string,

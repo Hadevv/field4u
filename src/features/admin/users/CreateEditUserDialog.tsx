@@ -36,7 +36,7 @@ import {
   CreateUserSchema,
   UpdateUserSchema,
 } from "../../../../app/admin/users/schema";
-import { UserRole, UserPlan, Language, type User } from "@prisma/client";
+import { UserRole, UserPlan, Language, type User } from "@/generated/client";
 import { z } from "zod";
 
 type CreateEditUserDialogProps = {

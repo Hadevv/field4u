@@ -36,7 +36,7 @@ import {
   type Field,
   type User,
   type Farm,
-} from "@prisma/client";
+} from "@/generated/client";
 import { z } from "zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -98,6 +98,9 @@ export function CreateEditAnnouncementDialog({
           fieldId: announcement.fieldId,
           cropTypeId: announcement.cropTypeId,
           quantityAvailable: announcement.quantityAvailable || undefined,
+          suggestedPrice: announcement.suggestedPrice
+            ? Number(announcement.suggestedPrice)
+            : undefined,
           ownerId: announcement.ownerId,
           isPublished: announcement.isPublished,
           startDate: announcement.startDate || undefined,
@@ -110,6 +113,7 @@ export function CreateEditAnnouncementDialog({
           fieldId: "",
           cropTypeId: "",
           quantityAvailable: undefined,
+          suggestedPrice: undefined,
           ownerId: "",
           isPublished: true,
           startDate: undefined,
@@ -300,6 +304,29 @@ export function CreateEditAnnouncementDialog({
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="suggestedPrice"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>prix suggéré (€)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        {...field}
+                        value={field.value || ""}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          field.onChange(value ? parseFloat(value) : undefined);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -404,9 +431,9 @@ export function CreateEditAnnouncementDialog({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                   <div className="space-y-0.5">
-                    <FormLabel>publier l'annonce</FormLabel>
+                    <FormLabel>publier l&apos;annonce</FormLabel>
                     <div className="text-[0.8rem] text-muted-foreground">
-                      l'annonce sera visible par tous les utilisateurs
+                      l&apos;annonce sera visible par tous les utilisateurs
                     </div>
                   </div>
                   <FormControl>

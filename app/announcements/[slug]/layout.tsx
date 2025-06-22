@@ -3,6 +3,8 @@ import { GleaningStepper } from "@/features/stepper/GleaningStepper";
 import { prisma } from "@/lib/prisma";
 import type { LayoutParams } from "@/types/next";
 import { auth } from "@/lib/auth/helper";
+import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
 export default async function AnnouncementLayout({
   children,
@@ -12,7 +14,7 @@ export default async function AnnouncementLayout({
   const user = await auth();
 
   // recup le statut du glanage pour l'annonce actuelle
-  let gleaningStatus;
+  let gleaningStatus: string | undefined;
   let isParticipant = false;
 
   try {
@@ -21,37 +23,38 @@ export default async function AnnouncementLayout({
         slug: params.slug,
       },
       include: {
-        gleaning: {
-          select: {
-            id: true,
-            status: true,
-            participations: user
-              ? {
-                  where: {
-                    userId: user.id,
-                  },
-                  select: {
-                    id: true,
-                  },
-                }
-              : false,
-          },
-        },
+        gleaning: true,
       },
     });
 
-    gleaningStatus = announcement?.gleaning?.status;
+    if (!announcement) {
+      notFound();
+    }
+
+    gleaningStatus = announcement.gleaning?.status;
 
     // vérifier si l'utilisateur est participant au glanage
-    if (user && announcement?.gleaning?.participations) {
-      isParticipant = announcement.gleaning.participations.length > 0;
+    if (user && announcement.gleaning) {
+      const participation = await prisma.participation.findUnique({
+        where: {
+          userId_gleaningId: {
+            userId: user.id,
+            gleaningId: announcement.gleaning.id,
+          },
+        },
+      });
+
+      isParticipant = !!participation;
     }
   } catch (error) {
-    console.error(
-      "erreur lors de la récupération du statut du glanage:",
-      error,
-    );
+    console.error("Error fetching announcement data:", error);
   }
+
+  // Récupérer l'URL pour extraire le paramètre initialStep
+  const headersList = await headers();
+  const referer = headersList.get("referer") || "";
+  // Si l'utilisateur vient de my-gleanings, on force l'initialStep à 2
+  const initialStep = referer.includes("/my-gleanings") ? 2 : undefined;
 
   return (
     <div className="container mx-auto pt-4 sm:pt-6">
@@ -63,6 +66,7 @@ export default async function AnnouncementLayout({
               variant="vertical"
               gleaningStatus={gleaningStatus}
               isParticipant={isParticipant}
+              initialStep={initialStep}
             />
           </CardContent>
         </Card>
@@ -74,6 +78,7 @@ export default async function AnnouncementLayout({
               variant="horizontal"
               gleaningStatus={gleaningStatus}
               isParticipant={isParticipant}
+              initialStep={initialStep}
             />
           </CardContent>
         </Card>

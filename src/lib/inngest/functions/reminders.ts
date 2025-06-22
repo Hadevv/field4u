@@ -5,7 +5,7 @@ import GleaningReminderEmail from "@email/GleaningReminderEmail";
 import { addHours, differenceInHours } from "date-fns";
 import { getServerUrl } from "@/lib/server-url";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export const remindersFunction = inngest.createFunction(
   { id: "gleaning-reminders" },

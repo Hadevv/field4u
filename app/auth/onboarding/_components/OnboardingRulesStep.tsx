@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { acceptRulesAction } from "../onboarding.action";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import { SubmitButton } from "@/features/form/SubmitButton";
 import { LoadingButton } from "@/features/form/SubmitButton";
 import {
@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ExternalLink, Info } from "lucide-react";
+import { CheckCircle, Info } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
@@ -37,8 +37,17 @@ export function OnboardingRulesStep({ role }: OnboardingRulesStepProps) {
       toast.error(error.message);
     },
     onSuccess: () => {
-      toast.success("Règles acceptées avec succès");
-      router.push("/");
+      toast.success(
+        "Inscription terminée avec succès! Vous allez être redirigé...",
+      );
+
+      // Attendre un peu pour que l'utilisateur puisse voir le message de succès
+      setTimeout(() => {
+        // Redirection vers la page d'accueil
+        router.push("/");
+        // Forcer un rafraîchissement pour s'assurer que le middleware reconnaît le changement d'état
+        router.refresh();
+      }, 1500);
     },
   });
 
@@ -153,10 +162,10 @@ export function OnboardingRulesStep({ role }: OnboardingRulesStepProps) {
         <Info className="h-4 w-4" />
         <AlertDescription className="space-y-2">
           <p className="font-medium">
-            ℹ️ Vous participez aux glanages sous votre propre responsabilité.
+            Vous participez aux glanages sous votre propre responsabilité.
           </p>
           <p>
-            Field4U décline toute responsabilité en cas d'accident ou de
+            Field4U décline toute responsabilité en cas d&apos;accident ou de
             dommage.
           </p>
           <p>
@@ -166,8 +175,7 @@ export function OnboardingRulesStep({ role }: OnboardingRulesStepProps) {
               className="text-primary hover:underline inline-flex items-center gap-1"
               target="_blank"
             >
-              Conditions générales d'utilisation
-              <ExternalLink className="h-3 w-3" />
+              Conditions générales d&apos;utilisation
             </Link>{" "}
             pour en savoir plus.
           </p>
@@ -201,7 +209,7 @@ export function OnboardingRulesStep({ role }: OnboardingRulesStepProps) {
             loading={acceptRulesMutation.isPending}
             disabled={acceptRulesMutation.isPending}
           >
-            Finaliser l'inscription
+            Finaliser l&apos;inscription
           </LoadingButton>
         )}
       </div>

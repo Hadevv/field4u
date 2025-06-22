@@ -10,7 +10,7 @@ export const getGleaningStatusInfo = (
   if (dbStatus === "CANCELLED") {
     return {
       status: "CANCELLED",
-      label: "annulé",
+      label: "Annulé",
       color: "bg-red-100 text-red-800",
       step: 0,
       isPast: false,
@@ -23,7 +23,7 @@ export const getGleaningStatusInfo = (
   if (!startDate || !endDate) {
     return {
       status: "NOT_STARTED",
-      label: "indisponible",
+      label: "Indisponible",
       color: "bg-gray-100 text-gray-800",
       step: 0,
       isPast: false,
@@ -36,7 +36,7 @@ export const getGleaningStatusInfo = (
   if (isPastDate(endDate)) {
     return {
       status: "COMPLETED",
-      label: "terminé",
+      label: "Terminé",
       color: "bg-blue-100 text-blue-800",
       step: 3,
       isPast: true,
@@ -49,8 +49,8 @@ export const getGleaningStatusInfo = (
   if (isDateBetween(startDate, endDate)) {
     return {
       status: "IN_PROGRESS",
-      label: "en cours",
-      color: "bg-green-100 text-green-800",
+      label: "En cours",
+      color: "bg-green-200 text-green-800",
       step: 2,
       isPast: false,
       isCurrent: true,
@@ -62,7 +62,7 @@ export const getGleaningStatusInfo = (
   if (now < startDate) {
     return {
       status: "NOT_STARTED",
-      label: "à venir",
+      label: "À venir",
       color: "bg-indigo-100 text-indigo-800",
       step: 0,
       isPast: false,
@@ -74,7 +74,7 @@ export const getGleaningStatusInfo = (
 
   return {
     status: "NOT_STARTED",
-    label: "à venir",
+    label: "À venir",
     color: "bg-indigo-100 text-indigo-800",
     step: 0,
     isPast: false,

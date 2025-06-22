@@ -127,7 +127,7 @@ export const OnboardingFarmerForm = ({
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>nom de l'exploitation</FormLabel>
+              <FormLabel>nom de l&apos;exploitation</FormLabel>
               <FormControl>
                 <Input
                   placeholder="ma ferme"
@@ -283,13 +283,13 @@ export const OnboardingFarmerForm = ({
             </FormControl>
             <div className="space-y-1 leading-none">
               <FormLabel>
-                j'accepte les{" "}
+                j&apos;accepte les{" "}
                 <Link
                   href="/terms"
                   className="text-primary underline"
                   target="_blank"
                 >
-                  conditions d'utilisation
+                  conditions d&apos;utilisation
                 </Link>{" "}
                 et la{" "}
                 <Link

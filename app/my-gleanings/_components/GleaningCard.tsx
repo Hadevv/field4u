@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Leaf, Star, ArrowRight } from "lucide-react";
 import { getGleaningStatusInfo } from "@/lib/format/gleaningStatus";
-import type { GleaningStatus } from "@prisma/client";
+import type { GleaningStatus } from "@/generated/client";
 import { Card } from "@/components/ui/card";
 
 type GleaningCardProps = {
@@ -34,7 +34,6 @@ export function GleaningCard({
   gleaningStatus,
   createdAt,
   hasReviewed,
-  gleaningId,
   type,
 }: GleaningCardProps) {
   const statusInfo = getGleaningStatusInfo(
@@ -45,11 +44,6 @@ export function GleaningCard({
 
   const isCompletedGleaning =
     gleaningStatus === "COMPLETED" && type === "participation" && !hasReviewed;
-
-  const handleViewDetails = () => {
-    console.log("Affichage des détails pour le glanage:", gleaningId);
-    // Navigation ou action avec gleaningId
-  };
 
   return (
     <Card className="overflow-hidden">
@@ -89,10 +83,10 @@ export function GleaningCard({
                 )}
               </div>
               <div className="text-xs text-muted-foreground">
-                {type === "participation" && "participation "}
-                {type === "favorite" && "ajouté aux favoris "}
-                {type === "like" && "aimé "}
-                {type === "review" && "évalué "}
+                {type === "participation" && "Participation "}
+                {type === "favorite" && "Ajouté aux favoris "}
+                {type === "like" && "Aimé "}
+                {type === "review" && "Évalué "}
                 le{" "}
                 {new Date(createdAt).toLocaleDateString("fr-FR", {
                   day: "numeric",
@@ -130,8 +124,10 @@ export function GleaningCard({
 
             <div className="flex justify-between items-center mt-auto pt-2">
               <Button asChild variant="outline" size="sm">
-                <Link href={`/announcements/${announcement.slug}`}>
-                  voir l'annonce
+                <Link
+                  href={`/announcements/${announcement.slug}?initialStep=2`}
+                >
+                  Voir l&apos;annonce
                   <ArrowRight className="ml-2 h-3.5 w-3.5" />
                 </Link>
               </Button>
@@ -143,22 +139,13 @@ export function GleaningCard({
                     className="flex items-center"
                   >
                     <Star className="w-3.5 h-3.5" />
-                    donner mon avis
+                    Donner mon avis
                   </Link>
                 </Button>
               )}
             </div>
           </div>
         </div>
-
-        <Button
-          onClick={handleViewDetails}
-          className="absolute top-2 right-2"
-          size="sm"
-          variant="secondary"
-        >
-          Détails
-        </Button>
       </div>
     </Card>
   );

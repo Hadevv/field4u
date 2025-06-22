@@ -200,7 +200,7 @@ async function AnnouncementContent({
       <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1">
         <div>
           <p className="text-sm mb-1 text-muted-foreground">
-            explorez. partagez. récoltez.
+            Explorez. Partagez. Récoltez.
           </p>
           <div className="flex items-center gap-4">
             <h1 className="text-xl font-bold text-foreground">
@@ -267,7 +267,7 @@ async function AnnouncementContent({
           {/* information section */}
           <div className="mt-4 md:mt-8">
             <h3 className="text-lg md:text-xl font-semibold mb-4">
-              informations
+              Informations
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 sm:gap-y-6">
               <div className="flex items-center">
@@ -313,7 +313,7 @@ async function AnnouncementContent({
           <Suspense
             fallback={
               <Button disabled className="w-full sm:w-auto" size="sm">
-                chargement...
+                Chargement...
               </Button>
             }
           >

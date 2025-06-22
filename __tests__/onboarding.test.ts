@@ -5,8 +5,8 @@ import {
   createGleanerAction,
   createFarmAction,
 } from "../app/auth/onboarding/onboarding.action";
-import { UserRole } from "@prisma/client";
-import type { User } from "@prisma/client";
+import { UserRole } from "@/generated/client";
+import type { User } from "@/generated/client";
 
 // mock les actions serveur
 vi.mock("../app/auth/onboarding/onboarding.action", () => ({

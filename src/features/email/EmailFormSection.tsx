@@ -9,12 +9,12 @@ export const EmailFormSection = () => {
           variant="small"
           className="font-extrabold uppercase text-primary"
         >
-          Soyez le premier à utiliser Field4u
+          Soyez le premier à utiliser Field4U
         </Typography>
         <Typography variant="h2" className="text-center text-4xl lg:text-5xl">
           Rejoignez la liste d'attente de{" "}
           <span className="text-gradient bg-gradient-to-r from-orange-600 via-red-400 to-yellow-400 font-mono font-extrabold uppercase">
-            Field4u
+            Field4U
           </span>
         </Typography>
         <Typography variant="h3">

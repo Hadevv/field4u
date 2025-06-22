@@ -2,7 +2,7 @@ import { route } from "@/lib/safe-route";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { CropCategory, CropSeason } from "@prisma/client";
+import { CropCategory, CropSeason } from "@/generated/client";
 
 // recup tous les types de cultures avec filtres
 export const GET = route

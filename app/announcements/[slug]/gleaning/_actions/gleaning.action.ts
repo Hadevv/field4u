@@ -8,10 +8,10 @@ import {
   LeaveGleaningSchema,
   type LeaveGleaningResponse,
 } from "./gleaning.schema";
-import { GleaningStatus } from "@prisma/client";
+import { GleaningStatus } from "@/generated/client";
 import { inngest } from "@/lib/inngest/client";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export const joinGleaningAction = authAction
   .schema(JoinGleaningSchema)

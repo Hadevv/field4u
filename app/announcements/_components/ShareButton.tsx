@@ -36,7 +36,7 @@ export function ShareButton({ title, slug, className }: ShareButtonProps) {
 
   const handleCopyLink = async () => {
     const url = getShareUrl();
-    const html = `<a href="${url}">Field4u - ${title}</a>`;
+    const html = `<a href="${url}">Field4U - ${title}</a>`;
     try {
       if (navigator.clipboard && (navigator.clipboard as any).write) {
         await navigator.clipboard.write([
@@ -58,7 +58,7 @@ export function ShareButton({ title, slug, className }: ShareButtonProps) {
   const handleShare = (platform: string) => {
     const url = getShareUrl();
     const encodedUrl = encodeURIComponent(url);
-    const encodedTitle = encodeURIComponent(`Field4u - ${title}`);
+    const encodedTitle = encodeURIComponent(`Field4U - ${title}`);
     let shareUrl = "";
 
     switch (platform) {
@@ -66,7 +66,7 @@ export function ShareButton({ title, slug, className }: ShareButtonProps) {
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
         break;
       case "email":
-        shareUrl = `mailto:?subject=${encodedTitle}&body=Voici une opportunité sur Field4u ! Découvrez cette annonce en cliquant sur le lien ci-dessous:%0A%0A<a href="${url}">Field4u - ${title}</a>`;
+        shareUrl = `mailto:?subject=${encodedTitle}&body=Voici une opportunité sur Field4U ! Découvrez cette annonce en cliquant sur le lien ci-dessous:%0A%0A<a href="${url}">Field4U - ${title}</a>`;
         break;
       case "whatsapp":
         shareUrl = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;

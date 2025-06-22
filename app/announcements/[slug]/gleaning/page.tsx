@@ -5,7 +5,7 @@ import { format, differenceInHours } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Metadata } from "next";
 import { Suspense } from "react";
-import { Announcement, Gleaning, Message, User } from "@prisma/client";
+import { Announcement, Gleaning, Message, User } from "@/generated/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LocationSection } from "./_components/LocationSection";
 import { DonationSection } from "./_components/DonationSection";
@@ -210,7 +210,7 @@ async function GleaningContent({ slug }: { slug: string }) {
 
   const formattedDate = announcement.startDate
     ? format(announcement.startDate, "EEEE d MMMM à HH:mm", { locale: fr })
-    : "date non définie";
+    : "Date non définie";
 
   const showRestrictedContent = !!(
     userIsParticipant &&
@@ -231,9 +231,9 @@ async function GleaningContent({ slug }: { slug: string }) {
       {/* navigation par onglets */}
       <Tabs defaultValue="details" className="w-full">
         <TabsList className="w-full grid grid-cols-3 mb-4">
-          <TabsTrigger value="details">détails</TabsTrigger>
-          <TabsTrigger value="chat">discussions</TabsTrigger>
-          <TabsTrigger value="rules">règles</TabsTrigger>
+          <TabsTrigger value="details">Détails</TabsTrigger>
+          <TabsTrigger value="chat">Discussions</TabsTrigger>
+          <TabsTrigger value="rules">Règles</TabsTrigger>
         </TabsList>
 
         <TabsContent value="details" className="mt-0">

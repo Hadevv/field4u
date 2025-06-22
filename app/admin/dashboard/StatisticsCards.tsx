@@ -15,74 +15,76 @@ export default function StatisticsCards(props: StatisticsCardsProps) {
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">utilisateurs</CardTitle>
+          <CardTitle className="text-sm font-medium">Utilisateurs</CardTitle>
           <Users className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.totalUsers}</div>
           <p className="text-xs text-muted-foreground">
-            inscrits sur plateforme
+            Inscrits sur plateforme
           </p>
         </CardContent>
       </Card>
 
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">champs</CardTitle>
+          <CardTitle className="text-sm font-medium">Champs</CardTitle>
           <MapPin className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.totalFields}</div>
           <p className="text-xs text-muted-foreground">
-            disponibles pour glanage
+            Disponibles pour glanage
           </p>
         </CardContent>
       </Card>
 
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">glanages</CardTitle>
+          <CardTitle className="text-sm font-medium">Glanages</CardTitle>
           <Leaf className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.totalGleanings}</div>
-          <p className="text-xs text-muted-foreground">réalisés avec succès</p>
+          <p className="text-xs text-muted-foreground">
+            Réalisés avec succès
+          </p>
         </CardContent>
       </Card>
 
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">annonces</CardTitle>
+          <CardTitle className="text-sm font-medium">Annonces</CardTitle>
           <Tag className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.totalAnnouncements}</div>
           <p className="text-xs text-muted-foreground">
-            publiées par agriculteurs
+            Publiées par agriculteurs
           </p>
         </CardContent>
       </Card>
 
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">glaneurs actifs</CardTitle>
+          <CardTitle className="text-sm font-medium">Glaneurs actifs</CardTitle>
           <CalendarClock className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.activeWeeklyGleaners}</div>
-          <p className="text-xs text-muted-foreground">cette semaine</p>
+          <p className="text-xs text-muted-foreground">Cette semaine</p>
         </CardContent>
       </Card>
 
       <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">dons (€)</CardTitle>
+          <CardTitle className="text-sm font-medium">Dons (€)</CardTitle>
           <Coins className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{props.totalDonations}</div>
           <p className="text-xs text-muted-foreground">
-            collectés pour associations
+            Collect
           </p>
         </CardContent>
       </Card>

@@ -20,16 +20,16 @@ export default async function MyGleaningsPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">Mes glanages</h1>
         <p className="text-muted-foreground">
-          gérer vos participations, favoris et évaluations
+          Gérer vos participations, favoris et évaluations
         </p>
       </div>
 
       <Tabs defaultValue="participations" className="w-full">
         <TabsList className="mb-6">
-          <TabsTrigger value="participations">participations</TabsTrigger>
-          <TabsTrigger value="favorites">favoris</TabsTrigger>
-          <TabsTrigger value="likes">j'aime</TabsTrigger>
-          <TabsTrigger value="reviews">évaluations</TabsTrigger>
+          <TabsTrigger value="participations">Participations</TabsTrigger>
+          <TabsTrigger value="favorites">Favoris</TabsTrigger>
+          <TabsTrigger value="likes">J&apos;aime</TabsTrigger>
+          <TabsTrigger value="reviews">Évaluations</TabsTrigger>
         </TabsList>
 
         <TabsContent value="participations">

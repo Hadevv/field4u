@@ -11,9 +11,9 @@ export const contactSupportAction = action
     await sendEmail({
       from: SiteConfig.email.from,
       to: SiteConfig.email.contact,
-      subject: `Support needed from ${email} - ${subject}`,
+      subject: `[Support] ${email} - ${subject}`,
       text: message,
       replyTo: email,
     });
-    return { message: "Your message has been sent to support." };
+    return { message: "Votre message a été envoyé à l'équipe de support." };
   });

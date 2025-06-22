@@ -61,8 +61,8 @@ export function GleaningProgress({
           {status === "NOT_STARTED" && <Calendar className="h-5 w-5 mr-2" />}
 
           <span className="font-semibold text-lg">
-            {status === "IN_PROGRESS" && "glanage en cours"}
-            {status === "COMPLETED" && "glanage terminé"}
+            {status === "IN_PROGRESS" && "Glanage en cours"}
+            {status === "COMPLETED" && "Glanage terminé"}
             {status === "NOT_STARTED" &&
               (timeRemaining
                 ? `commence dans ${timeRemaining}`
@@ -73,12 +73,12 @@ export function GleaningProgress({
         {/* bouton d'action selon statut */}
         {status === "IN_PROGRESS" && (
           <Button size="sm" variant="outline" className="text-sm h-7 px-2">
-            instructions
+            Instructions
           </Button>
         )}
         {status === "COMPLETED" && (
           <Button size="sm" variant="outline" className="text-sm h-7 px-2">
-            bilan
+            Bilan
           </Button>
         )}
         {startDate && status === "NOT_STARTED" && (
@@ -95,7 +95,7 @@ export function GleaningProgress({
 
       {/* barre de progression et infos */}
       <div className="flex justify-between text-sm text-muted-foreground">
-        <span>glanage {formattedDate}</span>
+        <span>Glanage {formattedDate}</span>
         <span>{progressPercentage}% complété</span>
       </div>
       <Progress value={progressPercentage} className="h-1.5 bg-muted mt-1" />

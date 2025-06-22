@@ -103,14 +103,15 @@ export function DashboardNavigation({
             <Layout>
               <LayoutHeader>
                 <LayoutTitle>
-                  Sorry, you need to be authenticated to access this resource.
+                  Désolé, vous devez être authentifié pour accéder à cette
+                  ressource.
                 </LayoutTitle>
               </LayoutHeader>
               <LayoutContent className="flex gap-4">
                 <SignInButton />
                 <ContactSupportDialog>
                   <Button variant="secondary" size="sm">
-                    Contact support
+                    Contactez le Support
                   </Button>
                 </ContactSupportDialog>
               </LayoutContent>

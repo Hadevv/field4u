@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { authAction } from "@/lib/backend/safe-actions";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 
 const DeleteFieldSchema = z.object({
   fieldId: z.string(),

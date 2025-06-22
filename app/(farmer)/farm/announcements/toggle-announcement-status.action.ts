@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { authAction } from "@/lib/backend/safe-actions";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import { ToggleAnnouncementStatusSchema } from "./toggle-announcement-status.schema";
 
 export const toggleAnnouncementStatusAction = authAction

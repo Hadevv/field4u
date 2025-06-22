@@ -1,6 +1,6 @@
 "use client";
 
-import { Farm } from "@prisma/client";
+import { Farm } from "@/generated/client";
 import {
   Form,
   FormControl,

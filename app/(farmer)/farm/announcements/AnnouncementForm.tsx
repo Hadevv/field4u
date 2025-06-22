@@ -197,7 +197,7 @@ export function AnnouncementForm({
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Titre de l'annonce</FormLabel>
+                      <FormLabel>Titre de l&apos;annonce</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Ex: Tomates à glaner - Fin août"
@@ -405,6 +405,9 @@ export function AnnouncementForm({
                             "image/png",
                             "image/jpg",
                           ]}
+                          onSelectFiles={(files) => {
+                            form.setValue("imageFiles", files);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />

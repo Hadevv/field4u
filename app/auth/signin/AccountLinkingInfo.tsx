@@ -17,9 +17,9 @@ export const AccountLinkingInfo = () => {
       <Info size={16} className="mr-2" />
       <AlertTitle>comptes fusionnés</AlertTitle>
       <AlertDescription>
-        nous avons automatiquement lié ce provider de connexion à votre compte
-        existant. vous pouvez désormais vous connecter avec n'importe lequel des
-        providers.
+        Nous avons automatiquement lié ce provider de connexion à votre compte
+        existant. Vous pouvez désormais vous connecter avec n&apos;importe lequel
+        des providers.
       </AlertDescription>
     </Alert>
   );

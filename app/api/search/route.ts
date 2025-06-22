@@ -10,7 +10,7 @@ import {
   searchAnnouncementsByLocation,
 } from "@/query/announcement.query";
 import { logger } from "@/lib/logger";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@/generated/client";
 
 const SearchParamsSchema = z.object({
   q: z.string().optional(),

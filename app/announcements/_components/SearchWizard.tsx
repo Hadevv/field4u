@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useRef } from "react";
@@ -152,17 +153,17 @@ export function SearchWizard({
                 >
                   <Search className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="truncate">
-                    {filters.query || "rechercher"}
+                    {filters.query || "Rechercher"}
                   </span>
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-[min(80vw,320px)] p-3" align="start">
                 <div className="space-y-2">
-                  <h4 className="font-medium">recherche</h4>
+                  <h4 className="font-medium">Recherche</h4>
                   <div className="relative">
                     <Input
                       ref={searchInputRef}
-                      placeholder="rechercher..."
+                      placeholder="Rechercher..."
                       value={filters.query || ""}
                       onChange={(e) => {
                         const input = e.target.value;
@@ -181,12 +182,13 @@ export function SearchWizard({
                         aria-label="effacer la recherche"
                       >
                         <X className="h-4 w-4" />
-                        <span className="sr-only">effacer</span>
+                        <span className="sr-only">Effacer</span>
                       </button>
                     )}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    la recherche s'effectue uniquement sur le titre des annonces
+                    La recherche s&apos;effectue uniquement sur le titre des
+                    annonces
                   </div>
                 </div>
               </PopoverContent>
@@ -213,7 +215,7 @@ export function SearchWizard({
                   )}
                 >
                   <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
-                  <span className="truncate">{filters.location || "lieu"}</span>
+                  <span className="truncate">{filters.location || "Lieu"}</span>
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-[min(90vw,320px)] p-3" align="start">
@@ -248,7 +250,7 @@ export function SearchWizard({
                   )}
                 >
                   <ListFilterPlus className="h-4 w-4 mr-2 text-muted-foreground" />
-                  <span className="truncate">filtres</span>
+                  <span className="truncate">Filtres</span>
                   {(filters.period || filters.cropTypeId) && (
                     <Badge className="ml-2 rounded-full h-5 min-w-5 p-0 flex items-center justify-center">
                       {(filters.period ? 1 : 0) + (filters.cropTypeId ? 1 : 0)}
@@ -260,7 +262,7 @@ export function SearchWizard({
                 <div className="space-y-4">
                   {/* type de culture */}
                   <div className="space-y-2">
-                    <h4 className="font-medium">type de culture</h4>
+                    <h4 className="font-medium">Type de culture</h4>
                     <RadioGroup
                       value={filters.cropTypeId || ""}
                       onValueChange={handleCropTypeChange}
@@ -269,7 +271,7 @@ export function SearchWizard({
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="" id="all-crops" />
                         <Label htmlFor="all-crops" className="cursor-pointer">
-                          toutes cultures
+                          Toutes cultures
                         </Label>
                       </div>
                       {cropTypes.map((type) => (
@@ -296,7 +298,7 @@ export function SearchWizard({
 
                   {/* periode */}
                   <div className="space-y-2">
-                    <h4 className="font-medium">période</h4>
+                    <h4 className="font-medium">Période</h4>
                     <RadioGroup
                       value={filters.period || ""}
                       onValueChange={handlePeriodChange}
@@ -319,7 +321,7 @@ export function SearchWizard({
                           htmlFor="period-all"
                           className="cursor-pointer text-sm text-center"
                         >
-                          toutes périodes
+                          Toutes périodes
                         </Label>
                       </div>
                       <div
@@ -339,7 +341,7 @@ export function SearchWizard({
                           htmlFor="period-today"
                           className="cursor-pointer text-sm text-center"
                         >
-                          aujourd'hui
+                          Aujourd&apos;hui
                         </Label>
                       </div>
                       <div
@@ -359,7 +361,7 @@ export function SearchWizard({
                           htmlFor="period-week"
                           className="cursor-pointer text-sm text-center"
                         >
-                          cette semaine
+                          Cette semaine
                         </Label>
                       </div>
                       <div
@@ -379,7 +381,7 @@ export function SearchWizard({
                           htmlFor="period-month"
                           className="cursor-pointer text-sm text-center"
                         >
-                          ce mois-ci
+                          Ce mois-ci
                         </Label>
                       </div>
                     </RadioGroup>
@@ -396,7 +398,7 @@ export function SearchWizard({
               disabled={results.isLoading}
             >
               <Search className="h-4 w-4 sm:mr-0 md:mr-2" />
-              <span className="hidden md:inline">rechercher</span>
+              <span className="hidden md:inline">Rechercher</span>
             </Button>
           </div>
         </CardContent>
@@ -436,7 +438,7 @@ export function SearchWizard({
           )}
           {filters.radius !== "25" && (
             <FilterBadge
-              label={`rayon ${filters.radius} km`}
+              label={`Rayon ${filters.radius} km`}
               onRemove={() => actions.handleRadiusChange("25")}
             />
           )}
@@ -449,7 +451,7 @@ export function SearchWizard({
             onClick={handleReset}
           >
             <RotateCcw className="h-3 w-3 mr-1" />
-            réinitialiser tout
+            Réinitialiser tout
           </Button>
         </div>
       )}
@@ -457,7 +459,7 @@ export function SearchWizard({
       {/* affichage des erreurs */}
       {results.isError && (
         <div className="text-center p-2 text-destructive text-sm">
-          erreur lors de la recherche. veuillez réessayer.
+          Erreur lors de la recherche. Veuillez réessayer.
         </div>
       )}
     </form>

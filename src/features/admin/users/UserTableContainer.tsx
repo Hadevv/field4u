@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter, usePathname } from "next/navigation";
 import { CreateEditUserDialog } from "./CreateEditUserDialog";
-import { User } from "@prisma/client";
+import { User } from "@/generated/client";
 import { exportToExcel } from "@/lib/export/table-export";
 import {
   Search,
@@ -130,7 +130,7 @@ export function UserTableContainer({
         <CardHeader className="p-4 md:p-6 pb-0 flex flex-row flex-wrap items-center justify-between gap-4">
           <div>
             <CardTitle className="text-xl text-accent-foreground">
-              liste des utilisateurs
+              Liste des Utilisateurs
             </CardTitle>
             <CardDescription>
               {totalPages > 0
@@ -151,7 +151,7 @@ export function UserTableContainer({
               ) : (
                 <RefreshCw className="size-4 mr-2" />
               )}
-              actualiser
+              Actualiser
             </Button>
             <Button
               variant="outline"
@@ -160,7 +160,7 @@ export function UserTableContainer({
               onClick={handleExport}
             >
               <FileDown className="size-4 mr-2" />
-              exporter
+              Exporter
             </Button>
           </div>
         </CardHeader>
@@ -169,7 +169,7 @@ export function UserTableContainer({
             <div className="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto space-y-2 sm:space-y-0 sm:space-x-2">
               <div className="flex items-center w-full sm:w-80 space-x-2">
                 <Input
-                  placeholder="rechercher..."
+                  placeholder="Rechercher..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="h-9"
@@ -193,13 +193,13 @@ export function UserTableContainer({
               </div>
               <Select value={roleFilter} onValueChange={handleRoleChange}>
                 <SelectTrigger className="w-full sm:w-[180px] h-9">
-                  <SelectValue placeholder="filtrer par rôle" />
+                  <SelectValue placeholder="Filtrer par rôle" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ALL">tous les rôles</SelectItem>
-                  <SelectItem value="ADMIN">administrateur</SelectItem>
-                  <SelectItem value="FARMER">agriculteur</SelectItem>
-                  <SelectItem value="GLEANER">glaneur</SelectItem>
+                  <SelectItem value="ALL">Tous les rôles</SelectItem>
+                  <SelectItem value="ADMIN">Administrateur</SelectItem>
+                  <SelectItem value="FARMER">Agriculteur</SelectItem>
+                  <SelectItem value="GLEANER">Glaneur</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -219,7 +219,7 @@ export function UserTableContainer({
           {totalPages > 1 && (
             <div className="flex items-center justify-between border-t pt-4 mt-4">
               <div className="text-sm text-muted-foreground">
-                page {page} sur {totalPages}
+                Page {page} sur {totalPages}
               </div>
               <div className="flex items-center space-x-2">
                 <Button
@@ -228,7 +228,7 @@ export function UserTableContainer({
                   onClick={() => handlePageChange(page - 1)}
                   disabled={page <= 1 || isPending}
                 >
-                  <ChevronLeft className="h-4 w-4 mr-1" /> précédent
+                  <ChevronLeft className="h-4 w-4 mr-1" /> Précédent
                 </Button>
                 <Button
                   variant="outline"
@@ -236,7 +236,7 @@ export function UserTableContainer({
                   onClick={() => handlePageChange(page + 1)}
                   disabled={page >= totalPages || isPending}
                 >
-                  suivant <ChevronRight className="h-4 w-4 ml-1" />
+                  Suivant <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </div>
             </div>

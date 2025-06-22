@@ -1,4 +1,4 @@
-# Tests E2E - Field4u
+# Tests E2E - Field4U
 
 ## Configuration
 

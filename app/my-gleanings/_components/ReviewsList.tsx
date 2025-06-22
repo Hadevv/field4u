@@ -34,8 +34,8 @@ export async function ReviewsList({ userId }: { userId: string }) {
   if (reviews.length === 0) {
     return (
       <EmptyState
-        title="pas encore d'évaluations"
-        description="évaluez vos expériences de glanage pour les retrouver ici"
+        title="Pas encore d'évaluations"
+        description="Évaluez vos expériences de glanage pour les retrouver ici"
         icon="review"
       />
     );
@@ -96,9 +96,9 @@ export async function ReviewsList({ userId }: { userId: string }) {
                       key={index}
                       src={image}
                       alt={`Photo de glanage ${index + 1}`}
-                      width={64}
-                      height={64}
-                      className="h-16 w-16 object-cover rounded-md"
+                      width={256}
+                      height={256}
+                      className="object-cover rounded-md w-45"
                     />
                   ))}
                 </div>

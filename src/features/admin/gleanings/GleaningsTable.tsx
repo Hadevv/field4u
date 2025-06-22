@@ -12,7 +12,7 @@ import {
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Badge } from "@/components/ui/badge";
-import { GleaningStatus } from "@prisma/client";
+import { GleaningStatus } from "@/generated/client";
 import {
   MoreHorizontal,
   Edit,
@@ -276,7 +276,7 @@ export function GleaningsTable({ gleanings }: GleaningsTableProps) {
                             target="_blank"
                           >
                             <Edit className="mr-2 size-4" />
-                            voir l'annonce
+                            voir l&apos;annonce
                           </Link>
                         </DropdownMenuItem>
                       </DropdownMenuContent>

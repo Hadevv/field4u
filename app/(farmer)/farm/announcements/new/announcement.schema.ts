@@ -18,8 +18,14 @@ export const AnnouncementSchema = z
       .positive("la quantité doit être positive")
       .min(1, "la quantité doit être d'au moins 1")
       .optional(),
-    startDate: z.date().optional(),
-    endDate: z.date().optional(),
+    startDate: z.date({
+      required_error: "La date de début est requise",
+      invalid_type_error: "Format de date invalide",
+    }),
+    endDate: z.date({
+      required_error: "La date de fin est requise",
+      invalid_type_error: "Format de date invalide",
+    }),
     suggestedPrice: z
       .number()
       .min(0, "le prix ne peut pas être négatif")
@@ -27,7 +33,7 @@ export const AnnouncementSchema = z
       .transform((val) => (val === 0 ? undefined : val))
       .nullish()
       .transform((val) => (val === null ? undefined : val)),
-    imageFiles: z.any().optional(),
+    imageFiles: z.array(z.instanceof(File)).optional(),
     images: z.array(z.string()).optional(),
   })
   .refine(

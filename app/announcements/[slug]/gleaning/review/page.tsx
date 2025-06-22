@@ -102,9 +102,7 @@ export default async function ReviewPage(props: PageParams<{ slug: string }>) {
   return (
     <div className="container mx-auto pt-6 max-w-6xl">
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="md:w-4/5">
-          <ReviewContent slug={params.slug} userId={user.id} />
-        </div>
+        <ReviewContent slug={params.slug} userId={user.id} />
       </div>
     </div>
   );
@@ -123,7 +121,7 @@ async function ReviewContent({
   );
 
   return (
-    <div className="p-4 pb-16">
+    <div className="p-4 pb-16 w-full">
       <ContentSection>
         <GleaningReviewHeader
           title={announcement.title}

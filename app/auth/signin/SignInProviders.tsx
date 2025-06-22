@@ -34,7 +34,7 @@ export const SignInProviders = () => {
       <Alert>
         <AlertTriangle size={16} />
         <AlertTitle>
-          Le provider n'est pas disponible. Cela est dû à une mauvaise
+          Le provider n&apos;est pas disponible. Cela est dû à une mauvaise
           configuration dans le fichier
           <Typography variant="code">auth.ts</Typography> .
         </AlertTitle>
@@ -75,7 +75,7 @@ export const SignInProviders = () => {
 
       {providers.credentials ? (
         <Typography variant="small">
-          Vous n'avez pas de compte ?{" "}
+          Vous n&apos;avez pas de compte ?{" "}
           <Typography variant="link" as={Link} href="/auth/signup">
             Créer un compte
           </Typography>

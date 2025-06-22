@@ -26,7 +26,7 @@ export function GrowthChart({ data }: { data: GrowthData[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>évolution cumulative des inscriptions</CardTitle>
+        <CardTitle>Évolution cumulative des inscriptions</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>

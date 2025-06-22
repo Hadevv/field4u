@@ -32,7 +32,7 @@ export function NotificationsMenu() {
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
-          <Bell className="size-5" />
+          <Bell size={20} />
           {unreadCount > 0 && (
             <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
               {unreadCount}
@@ -45,7 +45,7 @@ export function NotificationsMenu() {
           <CardHeader className="flex flex-row items-center justify-between px-4 pb-2 pt-4">
             <div>
               <CardTitle className="text-base">Notifications</CardTitle>
-              <CardDescription>vos dernières notifications</CardDescription>
+              <CardDescription>Vos dernières notifications</CardDescription>
             </div>
             {unreadCount > 0 && (
               <Button
@@ -54,7 +54,7 @@ export function NotificationsMenu() {
                 onClick={markAllAsRead}
                 className="h-8 px-2 text-xs"
               >
-                tout marquer comme lu
+                Tout marquer comme lu
               </Button>
             )}
           </CardHeader>
@@ -84,13 +84,13 @@ export function NotificationsMenu() {
               ))
             ) : (
               <div className="py-8 text-center text-muted-foreground">
-                aucune notification
+                Aucune notification
               </div>
             )}
           </CardContent>
           <CardFooter className="justify-center border-t p-2">
             <Button variant="link" size="sm" className="text-xs">
-              voir toutes les notifications
+              Voir toutes les notifications
             </Button>
           </CardFooter>
         </Card>

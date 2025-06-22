@@ -12,11 +12,12 @@ import { prisma } from "@/lib/prisma";
 import { AnnouncementTableContainer } from "@/features/admin/announcements/AnnouncementTableContainer";
 import { isAdmin } from "@/lib/auth/helper";
 import { Plus } from "lucide-react";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@/generated/client";
+import { convertDecimal } from "@/lib/format/decimal";
 
 export const metadata = {
-  title: "Gestion des annonces | Field4u Admin",
-  description: "Gérez les annonces de glanage sur la plateforme Field4u",
+  title: "Gestion des annonces | Field4U Admin",
+  description: "Gérez les annonces de glanage sur la plateforme Field4U",
 };
 
 export default async function AnnouncementsPage(props: PageParams<{}>) {
@@ -126,7 +127,7 @@ export default async function AnnouncementsPage(props: PageParams<{}>) {
 
   const totalPages = Math.ceil(totalAnnouncements / pageSize);
 
-  const announcements = await prisma.announcement.findMany({
+  const rawAnnouncements = await prisma.announcement.findMany({
     where: whereClause,
     include: {
       field: {
@@ -144,13 +145,17 @@ export default async function AnnouncementsPage(props: PageParams<{}>) {
     take: pageSize,
   });
 
-  const fields = await prisma.field.findMany({
+  const announcements = convertDecimal(rawAnnouncements);
+
+  const rawFields = await prisma.field.findMany({
     include: {
       farm: true,
       owner: true,
     },
     orderBy: [{ name: "asc" }],
   });
+
+  const fields = convertDecimal(rawFields);
 
   const cropTypes = await prisma.cropType.findMany({
     orderBy: [{ name: "asc" }],
@@ -166,7 +171,7 @@ export default async function AnnouncementsPage(props: PageParams<{}>) {
   return (
     <Layout size="full">
       <LayoutHeader>
-        <LayoutTitle>gestion des annonces</LayoutTitle>
+        <LayoutTitle>Gestion des Annonces</LayoutTitle>
       </LayoutHeader>
       <LayoutContent>
         <Suspense>
@@ -186,7 +191,7 @@ export default async function AnnouncementsPage(props: PageParams<{}>) {
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Plus className="mr-2 size-4" />
-                nouvelle annonce
+                Nouvelle Annonce
               </Button>
             }
           />

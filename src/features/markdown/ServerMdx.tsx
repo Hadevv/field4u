@@ -30,17 +30,32 @@ export const ServerMdx = (props: ServerMdxProps) => {
 };
 
 const RenderMdx = (props: ServerMdxProps) => {
-  return (
-    <MDXRemote
-      source={props.source}
-      components={MdxComponent}
-      options={{
-        mdxOptions: {
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
-          format: "mdx",
-        },
-      }}
-    />
-  );
+  // Vérifier si la source est vide ou undefined
+  if (!props.source) {
+    console.error("Source MDX vide ou non définie");
+    return <div className="text-destructive">Contenu non disponible</div>;
+  }
+
+  try {
+    return (
+      <MDXRemote
+        source={props.source}
+        components={MdxComponent}
+        options={{
+          mdxOptions: {
+            remarkPlugins: remarkPlugins,
+            rehypePlugins: rehypePlugins,
+            format: "mdx",
+          },
+        }}
+      />
+    );
+  } catch (error) {
+    console.error("Erreur lors du rendu MDX:", error);
+    return (
+      <div className="text-destructive">
+        Une erreur est survenue lors du chargement du contenu
+      </div>
+    );
+  }
 };

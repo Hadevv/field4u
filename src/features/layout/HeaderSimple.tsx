@@ -1,9 +1,8 @@
 "use client";
 
-import { SiteConfig } from "@/site-config";
-import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "../theme/ThemeToggle";
+import { Logo } from "@/components/svg/Logo";
 
 export function HeaderSimple() {
   return (
@@ -12,14 +11,7 @@ export function HeaderSimple() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src={SiteConfig.appIcon}
-                alt="app logo"
-                width={100}
-                height={100}
-                style={{ height: "auto" }}
-                priority
-              />
+              <Logo />
             </Link>
           </div>
 

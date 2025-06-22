@@ -14,7 +14,7 @@ import { deleteFieldAction } from "../../../../app/admin/fields/actions";
 import { useMutation } from "@tanstack/react-query";
 import { resolveActionResult } from "@/lib/backend/actions-utils";
 import { toast } from "sonner";
-import { type Field, type User, type Farm } from "@prisma/client";
+import { type Field, type User, type Farm } from "@/generated/client";
 import {
   Edit,
   MoreHorizontal,

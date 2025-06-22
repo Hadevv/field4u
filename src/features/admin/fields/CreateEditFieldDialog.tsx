@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { resolveActionResult } from "@/lib/backend/actions-utils";
 import { toast } from "sonner";
-import { type Field, type User, type Farm } from "@prisma/client";
+import { type Field, type User, type Farm } from "@/generated/client";
 import { z } from "zod";
 import {
   CreateFieldSchema,

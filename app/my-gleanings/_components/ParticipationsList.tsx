@@ -42,8 +42,8 @@ export async function ParticipationsList({ userId }: { userId: string }) {
   if (participations.length === 0) {
     return (
       <EmptyState
-        title="pas encore de participations"
-        description="rejoignez des glanages pour les voir apparaître ici"
+        title="Pas encore de participations"
+        description="Rejoignez des glanages pour les voir apparaître ici"
         icon="participate"
       />
     );
@@ -59,7 +59,7 @@ export async function ParticipationsList({ userId }: { userId: string }) {
       {/* Section des évaluations en attente */}
       {pendingReviews.length > 0 && (
         <div className="bg-primary/10 p-4 rounded-lg mb-6">
-          <h3 className="text-sm font-medium mb-3">évaluations en attente</h3>
+          <h3 className="text-sm font-medium mb-3">Évaluations en attente</h3>
           <div className="space-y-3">
             {pendingReviews.map((participation) => {
               const gleaning = participation.gleaning;
@@ -82,7 +82,7 @@ export async function ParticipationsList({ userId }: { userId: string }) {
                       className="flex items-center"
                     >
                       <Star className="w-3.5 h-3.5" />
-                      évaluer
+                      Évaluer
                     </Link>
                   </Button>
                 </div>

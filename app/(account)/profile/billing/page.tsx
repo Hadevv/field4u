@@ -23,7 +23,7 @@ export default async function DeleteProfilePage() {
       <Card variant="error">
         <CardHeader>
           <CardTitle>
-            Votre compte n'est pas lié à un compte de facturation
+            Votre compte n&lsquo;est pas lié à un compte de facturation
           </CardTitle>
           <CardDescription>
             Vous ne pouvez rien faire. Veuillez contacter le support.

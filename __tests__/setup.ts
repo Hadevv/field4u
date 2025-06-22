@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { beforeAll, vi, afterAll } from "vitest";
 import { mockDeep, mockReset } from "vitest-mock-extended";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/generated/client";
 
 // mock de prisma pour les tests
 export const mockPrisma = mockDeep<PrismaClient>();

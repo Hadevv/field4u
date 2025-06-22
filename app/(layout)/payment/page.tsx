@@ -30,12 +30,14 @@ export default async function PaymentPage(props: PageParams) {
     ? paymentIntent[0]
     : paymentIntent;
 
+  const setupFutureUsage = searchParams.setup_future_usage === "true";
+
   return (
     <Layout>
       <LayoutHeader>
-        <LayoutTitle>paiement sécurisé</LayoutTitle>
+        <LayoutTitle>Paiement sécurisé</LayoutTitle>
         <LayoutDescription>
-          veuillez compléter les informations de paiement ci-dessous pour
+          Veuillez compléter les informations de paiement ci-dessous pour
           finaliser votre transaction
         </LayoutDescription>
       </LayoutHeader>
@@ -47,7 +49,10 @@ export default async function PaymentPage(props: PageParams) {
                 <div className="h-64 animate-pulse bg-muted rounded-lg" />
               }
             >
-              <StripePaymentClient clientSecret={clientSecret} />
+              <StripePaymentClient
+                clientSecret={clientSecret}
+                setupFutureUsage={setupFutureUsage}
+              />
             </Suspense>
           </CardContent>
         </Card>

@@ -2,7 +2,7 @@ import { route } from "@/lib/safe-route";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { GleaningStatus, type Prisma } from "@prisma/client";
+import { GleaningStatus, type Prisma } from "@/generated/client";
 
 // recup les glanages disponibles avec filtres
 export const GET = route

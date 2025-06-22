@@ -20,7 +20,7 @@ import {
   type User,
   type Farm,
   type Gleaning,
-} from "@prisma/client";
+} from "@/generated/client";
 import {
   Edit,
   MoreHorizontal,
@@ -277,7 +277,7 @@ export function AnnouncementsTable({
                               target="_blank"
                             >
                               <Eye className="mr-2 size-4" />
-                              voir l'annonce
+                              Voir l&apos;annonce
                             </Link>
                           </DropdownMenuItem>
                           {announcement.gleaning && (

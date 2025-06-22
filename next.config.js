@@ -1,7 +1,4 @@
 module.exports = {
-  experimental: {
-    turbo: {},
-  },
   images: {
     remotePatterns: [
       {

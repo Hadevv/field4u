@@ -31,8 +31,8 @@ export async function FavoritesList({ userId }: { userId: string }) {
   if (favorites.length === 0) {
     return (
       <EmptyState
-        title="pas encore de favoris"
-        description="ajoutez des annonces à vos favoris pour les retrouver facilement ici"
+        title="Pas encore de favoris"
+        description="Ajoutez des annonces à vos favoris pour les retrouver facilement ici"
         icon="favorite"
       />
     );

@@ -11,32 +11,32 @@ export const DASHBOARD_LINKS: NavigationLinkGroups[] = [
   {
     links: [
       {
-        title: "dashboard",
+        title: "Tableau de Bord",
         icon: <LayoutDashboard />,
         url: "/admin/dashboard",
       },
     ],
   },
   {
-    title: "gestion",
+    title: "Gestion",
     links: [
       {
-        title: "utilisateurs",
+        title: "Utilisateurs",
         icon: <User2 />,
         url: "/admin/users",
       },
       {
-        title: "champs",
+        title: "Champs",
         icon: <MapPin />,
         url: "/admin/fields",
       },
       {
-        title: "annonces",
+        title: "Annonces",
         icon: <Megaphone />,
         url: "/admin/announcements",
       },
       {
-        title: "glanages",
+        title: "Glanages",
         icon: <Calendar />,
         url: "/admin/gleanings",
       },

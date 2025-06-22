@@ -66,17 +66,17 @@ export function LocationField({
     <div className="space-y-4">
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <h4 className="font-medium">recherche par lieu</h4>
+          <h4 className="font-medium">Recherche par lieu</h4>
         </div>
         <div className="relative">
           <Input
             ref={inputRef}
-            placeholder="ville, code postal..."
+            placeholder="Ville, code postal..."
             defaultValue={value || ""}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             className="pr-8"
-            aria-label="entrer une localisation"
+            aria-label="Entrer une localisation"
           />
           {value && (
             <button
@@ -86,14 +86,14 @@ export function LocationField({
               aria-label="effacer la recherche par lieu"
             >
               <X className="h-4 w-4" />
-              <span className="sr-only">effacer</span>
+              <span className="sr-only">Effacer</span>
             </button>
           )}
         </div>
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-sm">position actuelle</span>
+        <span className="text-sm">Position actuelle</span>
         <LocationDetector
           onLocationDetected={handleLocationDetected}
           variant="outline"
@@ -102,7 +102,7 @@ export function LocationField({
       </div>
 
       <div className="space-y-2">
-        <h4 className="font-medium">rayon de recherche: {radius} km</h4>
+        <h4 className="font-medium">Rayon de recherche: {radius} km</h4>
         <div className="grid grid-cols-4 gap-2">
           {["10", "25", "50", "100"].map((radiusValue) => (
             <Button

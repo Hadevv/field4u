@@ -28,9 +28,9 @@ export default function RouteError({ error }: ErrorParams) {
         <CardHeader>
           <CardTitle>Problème de configuration stripe</CardTitle>
           <CardDescription>
-            Le portail client stripe n'a pas été configuré correctement.
-            veuillez contacter l'administrateur ou configurer le portail client
-            dans le tableau de bord stripe.
+            Le portail client stripe n&apos;a pas été configuré correctement.
+            veuillez contacter l&apos;administrateur ou configurer le portail
+            client dans le tableau de bord stripe.
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex gap-2">
@@ -38,7 +38,7 @@ export default function RouteError({ error }: ErrorParams) {
             href="/"
             className="text-sm text-muted-foreground hover:underline"
           >
-            retour à l'accueil
+            Retour à l&apos;accueil
           </Link>
         </CardFooter>
       </Card>
@@ -49,7 +49,7 @@ export default function RouteError({ error }: ErrorParams) {
     <Card>
       <CardHeader>
         <CardTitle>
-          vous devez être connecté pour accéder à cette ressource
+          Vous devez être connecté pour accéder à cette ressource
         </CardTitle>
       </CardHeader>
       <CardFooter>

@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { ReviewSchema } from "./submit-review.schema";
 import { uploadManager } from "@/features/upload/upload-new";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export const submitReviewAction = authAction
   .schema(ReviewSchema)
@@ -30,7 +30,7 @@ export const submitReviewAction = authAction
     });
 
     if (!participation) {
-      throw new Error("vous n'avez pas participé à ce glanage");
+      throw new Error("Vous n'avez pas participé à ce glanage");
     }
 
     // verifier si l'utilisateur a deja laisse un avis
@@ -42,7 +42,7 @@ export const submitReviewAction = authAction
     });
 
     if (existingReview) {
-      throw new Error("vous avez déjà laissé un avis pour ce glanage");
+      throw new Error("Vous avez déjà laissé un avis pour ce glanage");
     }
 
     // gerer les images uploadées
@@ -60,11 +60,11 @@ export const submitReviewAction = authAction
           });
           imageUrls = [...imageUrls, ...uploadedUrls];
         } catch (error) {
-          console.error("erreur lors de l'upload des images:", error);
+          console.error("Erreur lors de l'upload des images:", error);
           throw new Error(
             error instanceof Error
               ? error.message
-              : "erreur lors de l'upload des images",
+              : "Erreur lors de l'upload des images",
           );
         }
       }
@@ -94,7 +94,7 @@ export const submitReviewAction = authAction
       await sendNotificationToUser(
         gleaning.announcement.ownerId,
         NotificationType.REVIEW_POSTED,
-        `un glaneur a laissé un avis sur votre annonce "${gleaning.announcement.title ?? ""}"`,
+        `Un glaneur a laissé un avis sur votre annonce "${gleaning.announcement.title ?? ""}"`,
       );
     }
 

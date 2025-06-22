@@ -27,8 +27,8 @@ const ReviewSchema = z.object({
   rating: z.number().int().min(1).max(5),
   content: z
     .string()
-    .min(3, "votre avis doit contenir au moins 3 caractères")
-    .max(500, "votre avis est trop long (max 500 caractères)"),
+    .min(3, "Votre avis doit contenir au moins 3 caractères")
+    .max(500, "Votre avis est trop long (max 500 caractères)"),
 });
 
 type ReviewFormProps = {
@@ -68,7 +68,7 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
       );
     },
     onSuccess: () => {
-      toast.success("merci pour votre évaluation!");
+      toast.success("Merci pour votre évaluation!");
       router.refresh();
     },
     onError: (error) => {
@@ -87,7 +87,7 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
   return (
     <div className="space-y-6">
       <div className="bg-background rounded-lg p-6">
-        <h2 className="text-lg font-medium mb-4">votre évaluation</h2>
+        <h2 className="text-lg font-medium mb-4">Votre évaluation</h2>
 
         <Form
           form={form}
@@ -101,7 +101,7 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
             name="rating"
             render={({ field }) => (
               <FormItem className="mb-6">
-                <FormLabel>note</FormLabel>
+                <FormLabel>Note</FormLabel>
                 <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Button
@@ -126,7 +126,7 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
 
           {/* image upload */}
           <div className="mb-6">
-            <Label>photos de votre récolte (optionnel)</Label>
+            <Label>Photos de votre récolte (optionnel)</Label>
             <FilesDropzone
               onChange={(urls) => handleFilesChange(urls)}
               onSelectFiles={handleFileObjects}
@@ -141,10 +141,10 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>votre avis</FormLabel>
+                <FormLabel>Votre avis</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="partagez votre expérience avec ce glanage..."
+                    placeholder="Partagez votre expérience avec ce glanage..."
                     className="min-h-32 resize-none"
                     {...field}
                   />
@@ -165,7 +165,7 @@ export function ReviewForm({ gleaningId }: ReviewFormProps) {
               ) : (
                 <Send className="h-4 w-4" />
               )}
-              publier mon avis
+              Publier mon avis
             </Button>
           </div>
         </Form>

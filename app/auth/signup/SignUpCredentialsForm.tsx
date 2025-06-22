@@ -104,7 +104,7 @@ export const SignUpCredentialsForm = () => {
         name="verifyPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Verify Password</FormLabel>
+            <FormLabel>Vérifier le mot de passe</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>

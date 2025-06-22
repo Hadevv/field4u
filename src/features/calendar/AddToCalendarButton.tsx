@@ -66,11 +66,11 @@ export function showAddToCalendarDialog({
   location: string;
 }) {
   const dialogId = dialogManager.add({
-    title: "ajouter au calendrier",
+    title: "Ajouter au calendrier",
     description: (
       <>
         <p className="text-center text-muted-foreground mb-4">
-          voulez-vous ajouter ce glanage à votre calendrier ?
+          Voulez-vous ajouter ce glanage à votre calendrier ?
         </p>
         <div className="flex flex-col gap-3 w-full">
           <button
@@ -96,7 +96,7 @@ export function showAddToCalendarDialog({
               height={20}
               className="w-5 h-5"
             />
-            google calendar
+            Google Calendar
           </button>
           <button
             className="w-full h-9 rounded-md border border-input text-sm font-medium flex items-center justify-center gap-2 hover:bg-muted transition bg-background"
@@ -121,14 +121,14 @@ export function showAddToCalendarDialog({
               height={20}
               className="w-5 h-5"
             />
-            outlook
+            Outlook
           </button>
         </div>
       </>
     ),
     style: "centered",
     cancel: {
-      label: "non merci",
+      label: "Non merci",
       onClick: () => dialogManager.remove(dialogId),
     },
   });

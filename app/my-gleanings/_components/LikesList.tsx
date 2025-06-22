@@ -31,8 +31,8 @@ export async function LikesList({ userId }: { userId: string }) {
   if (likes.length === 0) {
     return (
       <EmptyState
-        title="pas encore de j'aime"
-        description="aimez des annonces pour les retrouver ici"
+        title="Pas encore de j'aime"
+        description="Aimez des annonces pour les retrouver ici"
         icon="like"
       />
     );

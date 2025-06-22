@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // Routes qui nécessitent une authentification
 const PROTECTED_ROUTES = ["/admin", "/(account)", "/(farmer)", "/my-gleanings"];
 
-// Pages exemptées du contrôle d'onboarding
+// Pages sans contrôle d'onboarding
 const ONBOARDING_EXEMPTIONS = [
   "/auth/onboarding",
   "/auth/signin",
@@ -12,20 +12,16 @@ const ONBOARDING_EXEMPTIONS = [
   "/api",
 ];
 
-/**
- * Vérifie si une route nécessite une authentification
- */
+// Vérifie si une route nécessite une authentification
 function isProtectedRoute(pathname: string): boolean {
   return PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 }
 
-/**
- * Middleware qui gère l'authentification et l'onboarding
- */
+// Middleware qui gère l'authentification et l'onboarding
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Ignorer les routes API
+  // Ignorer les routes API et les routes statiques
   if (pathname.startsWith("/api/")) {
     return NextResponse.next();
   }
@@ -54,7 +50,7 @@ export async function middleware(request: NextRequest) {
           pathname.startsWith(exemption),
         );
 
-        // Si l'utilisateur n'a pas terminé l'onboarding et n'est pas sur une page exemptée
+        // Si l'utilisateur n'a pas terminé l'onboarding et n'est pas sur une page sans contrôle d'onboarding
         if (!isExempted && userData?.onboardingCompleted === false) {
           return NextResponse.redirect(
             new URL("/auth/onboarding", request.url),

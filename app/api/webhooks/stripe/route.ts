@@ -16,7 +16,7 @@ import {
   upgradeUserToPlan,
 } from "./premium.helper";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 /**
  * stripe webhooks
@@ -116,7 +116,7 @@ async function handlePaymentIntentSucceeded(object: Stripe.PaymentIntent) {
       new_status: object.status,
     });
 
-    if (payment.participation.userId) {
+    if (payment.participation?.userId) {
       const announcementTitle =
         payment.participation.gleaning?.announcement?.title || "glanage";
       await sendNotificationToUser(

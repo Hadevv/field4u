@@ -43,10 +43,10 @@ export function LocationSection({
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg font-semibold text-card-foreground">
           <MapPin className="h-5 w-5" />
-          lieu du glanage
+          Lieu du glanage
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          informations sur l'emplacement du glanage
+          Informations sur l&apos;emplacement du glanage
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -54,10 +54,10 @@ export function LocationSection({
           <>
             <div className="mb-4 space-y-2">
               <p className="text-sm text-foreground">
-                <span className="font-medium">adresse: </span>
+                <span className="font-medium">Adresse: </span>
                 {isLoading ? (
                   <span className="text-muted-foreground italic">
-                    chargement...
+                    Chargement...
                   </span>
                 ) : (
                   data?.formattedAddress
@@ -65,7 +65,7 @@ export function LocationSection({
               </p>
               <div className="flex items-center gap-2">
                 <p className="text-sm text-foreground">
-                  <span className="font-medium">coordonnées gps: </span>
+                  <span className="font-medium">Coordonnées gps: </span>
                   {formattedCoords}
                 </p>
                 <Button
@@ -85,6 +85,7 @@ export function LocationSection({
                 height="100%"
                 frameBorder="0"
                 scrolling="no"
+                referrerPolicy="no-referrer-when-downgrade"
                 src={`https://maps.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
                 className="absolute inset-0"
               ></iframe>
@@ -95,15 +96,15 @@ export function LocationSection({
             <Lock className="h-12 w-12 mx-auto text-muted-foreground" />
             <div>
               <p className="font-medium mb-1 text-foreground">
-                lieu masqué pour le moment
+                Lieu masqué pour le moment
               </p>
               <p className="text-sm text-muted-foreground mb-4">
-                les informations de localisation seront dévoilées 24h avant le
+                Les informations de localisation seront dévoilées 24h avant le
                 glanage
               </p>
               <Button variant="outline" size="sm">
                 <Bell className="size-4" />
-                <Link href={`/profile/email`}>être notifié 24h avant</Link>
+                <Link href={`/profile/email`}>Être notifié 24h avant</Link>
               </Button>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { Review } from "@prisma/client";
+import { Review } from "@/generated/client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { format } from "date-fns";
@@ -14,16 +14,16 @@ export function ExistingReview({ review }: ExistingReviewProps) {
     <div className="space-y-6">
       <div className="bg-background rounded-lg p-6">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="text-lg font-medium">votre évaluation</h2>
+          <h2 className="text-lg font-medium">Votre évaluation</h2>
           <div className="text-xs text-muted-foreground">
-            publiée le{" "}
+            Publiée le{" "}
             {format(new Date(review.createdAt), "d MMMM yyyy", { locale: fr })}
           </div>
         </div>
 
         {/* rating */}
         <div className="mb-6">
-          <h3 className="text-sm font-medium mb-2">votre note</h3>
+          <h3 className="text-sm font-medium mb-2">Votre note</h3>
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
               <Star
@@ -41,7 +41,7 @@ export function ExistingReview({ review }: ExistingReviewProps) {
 
         {/* review */}
         <div className="mb-6">
-          <h3 className="text-sm font-medium mb-2">votre commentaire</h3>
+          <h3 className="text-sm font-medium mb-2">Votre commentaire</h3>
           <div className="text-sm bg-background p-4 rounded-md">
             {review.content}
           </div>
@@ -50,7 +50,7 @@ export function ExistingReview({ review }: ExistingReviewProps) {
         {/* images */}
         {review.images && review.images.length > 0 && (
           <div>
-            <h3 className="text-sm font-medium mb-3">vos photos</h3>
+            <h3 className="text-sm font-medium mb-3">Vos photos</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {review.images.map((image, index) => (
                 <div
@@ -73,7 +73,7 @@ export function ExistingReview({ review }: ExistingReviewProps) {
 
       <div className="text-center">
         <p className="text-muted-foreground text-sm">
-          merci d'avoir partagé votre expérience! cela aide la communauté à
+          Merci d&apos;avoir partagé votre expérience! Cela aide la communauté à
           mieux connaître ce glanage
         </p>
       </div>

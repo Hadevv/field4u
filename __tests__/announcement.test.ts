@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mockPrisma } from "./setup";
 import { createAnnouncementAction } from "../app/(farmer)/farm/announcements/new/create-announcement.action";
 import { deleteAnnouncementAction } from "../app/(farmer)/farm/announcements/delete-announcement.action";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 
 // mock des actions serveur
 vi.mock(

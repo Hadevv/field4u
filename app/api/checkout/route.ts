@@ -71,9 +71,35 @@ export const POST = authRoute
         });
       }
 
+      let stripeCustomerId = data.user.stripeCustomerId;
+
+      if (!stripeCustomerId) {
+        const customer = await stripe.customers.create({
+          email: data.user.email,
+          name: data.user.name || undefined,
+          metadata: {
+            userId: data.user.id,
+          },
+        });
+
+        stripeCustomerId = customer.id;
+
+        await prisma.user.update({
+          where: { id: data.user.id },
+          data: { stripeCustomerId },
+        });
+
+        logger.info(`nouveau customer stripe créé`, {
+          userId: data.user.id,
+          stripeCustomerId,
+        });
+      }
+
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(body.amount * 100),
         currency: "eur",
+        customer: stripeCustomerId,
+        setup_future_usage: "off_session",
         automatic_payment_methods: {
           enabled: true,
         },
@@ -89,6 +115,7 @@ export const POST = authRoute
         paymentIntentId: paymentIntent.id,
         participationId: participation.id,
         initialStatus: paymentIntent.status,
+        customerId: stripeCustomerId,
       });
 
       const payment = await prisma.participationPayment.create({

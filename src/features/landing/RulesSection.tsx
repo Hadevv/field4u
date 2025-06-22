@@ -37,7 +37,7 @@ export function RulesSection() {
                   <p className="text-muted-foreground">
                     Le glanage se déroule toujours après que la récolte soit
                     totalement achevée, en l&apos;absence de travail ou de
-                    machine agricole sur la parcelle, et avant le semis suivant si c'es le cas merci de le signalé.
+                    machine agricole sur la parcelle, et avant le semis suivant si c&apos;es le cas merci de le signalé.
                   </p>
                 </div>
 

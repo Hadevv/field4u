@@ -14,7 +14,7 @@ import { deleteUserAction } from "../../../../app/admin/users/actions";
 import { useMutation } from "@tanstack/react-query";
 import { resolveActionResult } from "@/lib/backend/actions-utils";
 import { toast } from "sonner";
-import { UserRole, UserPlan, Language, type User } from "@prisma/client";
+import { UserRole, UserPlan, Language, type User } from "@/generated/client";
 import { Edit, MoreHorizontal, Trash2, UserCog, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 export type LogoSvgProps = ComponentPropsWithoutRef<"svg"> & { size?: number };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const LogoSvg = ({ size = 32, ...props }: LogoSvgProps) => {
   return (
     <svg

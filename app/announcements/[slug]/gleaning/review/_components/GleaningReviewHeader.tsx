@@ -17,7 +17,7 @@ export function GleaningReviewHeader({
     <div className="mb-8">
       <h1 className="text-2xl font-bold mb-2">{title}</h1>
       <p className="text-muted-foreground mb-4">
-        partagez votre expérience et aidez la communauté
+        Partagez votre expérience et aidez la communauté
       </p>
 
       <div className="flex flex-wrap gap-4 mt-4">

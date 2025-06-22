@@ -37,8 +37,8 @@ export async function generateMetadata(props: PostParams): Promise<Metadata> {
     description: post.attributes.description,
     keywords: post.attributes.keywords,
     authors: {
-      name: "Melvynx",
-      url: "https://melvynx.com",
+      name: "",
+      url: "",
     },
   };
 }

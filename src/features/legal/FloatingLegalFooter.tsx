@@ -28,7 +28,7 @@ export const FloatingLegalFooter = () => {
           className="text-xs text-muted-foreground hover:underline"
           href="/legal/terms"
         >
-          Conditions d'utilisation
+          Conditions d&apos;utilisation
         </Link>
 
         <Image
@@ -57,7 +57,7 @@ export const FloatingLegalFooter = () => {
         className="text-xs text-muted-foreground hover:underline"
         href="/legal/terms"
       >
-        Conditions d'utilisation
+        Conditions d&apos;utilisation
       </Link>
 
       <Image

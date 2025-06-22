@@ -39,12 +39,12 @@ export function JoinGleaningButton({
       resolveActionResult(joinGleaningAction({ announcementId })),
     onSuccess: (data) => {
       if (data.alreadyParticipating) {
-        toast.info("vous participez déjà à ce glanage", {
-          description: "vous pouvez voir les détails du glanage",
+        toast.info("Vous participez déjà à ce glanage", {
+          description: "Vous pouvez voir les détails du glanage",
         });
       } else {
-        toast.success("vous avez rejoint le glanage", {
-          description: "vous êtes maintenant sur la liste des participants",
+        toast.success("Vous avez rejoint le glanage", {
+          description: "Vous êtes maintenant sur la liste des participants",
         });
       }
 
@@ -93,7 +93,7 @@ export function JoinGleaningButton({
         onClick={() => router.push(`/announcements/${slug}/gleaning`)}
       >
         <Check className="size-5" />
-        voir le glanage
+        Voir le glanage
       </Button>
     );
   }
@@ -107,11 +107,11 @@ export function JoinGleaningButton({
       onClick={() => joinMutation()}
     >
       {isPending ? (
-        "en cours..."
+        "En cours..."
       ) : (
         <>
           <Users className="size-4 mr-2" />
-          rejoindre le glanage
+          Rejoindre le glanage
         </>
       )}
     </Button>

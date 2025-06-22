@@ -1,6 +1,6 @@
-import type { User } from "@prisma/client";
+import type { User } from "@/generated/client";
 import { baseAuth } from "./auth";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 
 export class AuthError extends Error {
   constructor(message: string) {
@@ -33,7 +33,9 @@ export const requiredRole = async (role: UserRole) => {
   const user = await requiredAuth();
 
   if (user.role !== role) {
-    throw new AuthError(`You do not have the '${role}' role to access this resource.`);
+    throw new AuthError(
+      `You do not have the '${role}' role to access this resource.`,
+    );
   }
 
   return user;

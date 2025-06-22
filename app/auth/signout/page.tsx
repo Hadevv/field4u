@@ -1,3 +1,3 @@
 export default function AuthSignOutPage() {
-  return <div>déconnexion...</div>;
+  return <div>Déconnexion...</div>;
 }

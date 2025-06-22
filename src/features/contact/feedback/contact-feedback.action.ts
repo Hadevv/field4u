@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { SiteConfig } from "@/site-config";
 import { ContactFeedbackSchema } from "./contact-feedback.schema";
 import { sendNotificationToUser } from "@/lib/notifications/sendNotification";
-import { NotificationType } from "@prisma/client";
+import { NotificationType } from "@/generated/client";
 
 export const contactSupportAction = action
   .schema(ContactFeedbackSchema)
@@ -43,7 +43,7 @@ export const contactSupportAction = action
       await sendNotificationToUser(
         admin.id,
         NotificationType.FEEDBACK_RECEIVED,
-        `nouveau feedback reçu de ${email}`,
+        `Nouveau feedback reçu de ${email}`,
       );
     }
 

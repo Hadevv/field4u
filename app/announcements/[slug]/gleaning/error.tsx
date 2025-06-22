@@ -37,14 +37,14 @@ export default function GleaningError({
               <AlertCircle className="h-6 w-6 text-destructive" />
             </div>
           </div>
-          <CardTitle className="text-xl">erreur de glanage</CardTitle>
+          <CardTitle className="text-xl">Erreur de glanage</CardTitle>
           <CardDescription>
-            impossible d'accéder à cette session de glanage
+            Impossible d&apos;accéder à cette session de glanage
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <p className="text-sm text-muted-foreground mb-2">
-            message d'erreur:
+            Message d&apos;erreur:
           </p>
           <div className="bg-muted p-3 rounded-md text-sm overflow-auto">
             {error.message || "erreur inconnue"}
@@ -54,12 +54,12 @@ export default function GleaningError({
           <Button asChild variant="outline" size="sm">
             <Link href={`/announcements/${slug}`}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              retour à l'annonce
+              Retour à l&apos;annonce
             </Link>
           </Button>
           <Button onClick={reset} size="sm">
             <RefreshCw className="h-4 w-4 mr-2" />
-            réessayer
+            Réessayer
           </Button>
         </CardFooter>
       </Card>

@@ -13,7 +13,7 @@ import {
   User,
   Farm,
   Gleaning,
-} from "@prisma/client";
+} from "@/generated/client";
 import {
   Search,
   ChevronLeft,
@@ -229,7 +229,7 @@ export function AnnouncementTableContainer({
         <CardHeader className="p-4 md:p-6 pb-0 flex flex-row flex-wrap items-center justify-between gap-4">
           <div>
             <CardTitle className="text-xl text-accent-foreground">
-              liste des annonces
+              Liste des Annonces
             </CardTitle>
             <CardDescription>
               {totalPages > 0
@@ -250,7 +250,7 @@ export function AnnouncementTableContainer({
               ) : (
                 <RefreshCw className="size-4 mr-2" />
               )}
-              actualiser
+              Actualiser
             </Button>
             <Button
               variant="outline"
@@ -259,7 +259,7 @@ export function AnnouncementTableContainer({
               onClick={handleExport}
             >
               <FileDown className="size-4 mr-2" />
-              exporter
+              Exporter
             </Button>
           </div>
         </CardHeader>
@@ -268,7 +268,7 @@ export function AnnouncementTableContainer({
             <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
               <div className="relative w-full sm:w-80">
                 <Input
-                  placeholder="rechercher..."
+                  placeholder="Rechercher..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="h-9"
@@ -282,7 +282,7 @@ export function AnnouncementTableContainer({
                   <SelectTrigger className="h-9">
                     <div className="flex items-center gap-2">
                       <Filter className="size-4 text-muted-foreground" />
-                      <SelectValue placeholder="filtrer par statut" />
+                      <SelectValue placeholder="Filtrer par statut" />
                     </div>
                   </SelectTrigger>
                   <SelectContent>
@@ -315,7 +315,7 @@ export function AnnouncementTableContainer({
                   className="h-9"
                 >
                   <X className="size-4 mr-2" />
-                  effacer les filtres
+                  Effacer les filtres
                 </Button>
               )}
             </div>

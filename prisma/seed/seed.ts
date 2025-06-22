@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   PrismaClient,
   UserRole,
@@ -8,7 +9,7 @@ import {
   GleaningStatus,
   NotificationType,
   MessageType,
-} from "@prisma/client";
+} from "@/generated/client";
 import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import {
@@ -66,7 +67,7 @@ async function seedUsers() {
   const hashedPassword = await bcrypt.hash("Password123!", 10);
 
   // admin
-  const adminUser = { email: "admin@field4u.be", name: "Admin Field4u" };
+  const adminUser = { email: "admin@field4u.be", name: "Admin Field4U" };
   const adminStripeId = await setupStripeCustomer(adminUser);
   const adminResendId = await setupResendCustomer(adminUser);
   await prisma.user.create({
@@ -82,7 +83,7 @@ async function seedUsers() {
       termsAcceptedAt: new Date(),
       acceptGeolocation: true,
       plan: UserPlan.PREMIUM,
-      bio: "administrateur de la plateforme Field4u",
+      bio: "administrateur de la plateforme Field4U",
       city: "Bruxelles",
       postalCode: "1000",
       stripeCustomerId: adminStripeId ?? undefined,
@@ -92,7 +93,7 @@ async function seedUsers() {
   });
 
   // gleaner
-  const gleanerUser = { email: "gleaner@field4u.be", name: "Gleaner Field4u" };
+  const gleanerUser = { email: "gleaner@field4u.be", name: "Gleaner Field4U" };
   const gleanerStripeId = await setupStripeCustomer(gleanerUser);
   const gleanerResendId = await setupResendCustomer(gleanerUser);
   await prisma.user.create({
@@ -108,7 +109,7 @@ async function seedUsers() {
       termsAcceptedAt: new Date(),
       acceptGeolocation: true,
       plan: UserPlan.PREMIUM,
-      bio: "glaneur de la plateforme Field4u",
+      bio: "glaneur de la plateforme Field4U",
       city: "Bruxelles",
       postalCode: "1000",
       stripeCustomerId: gleanerStripeId ?? undefined,
@@ -118,7 +119,7 @@ async function seedUsers() {
   });
 
   // farmer
-  const farmerUser = { email: "farmer@field4u.be", name: "Farmer Field4u" };
+  const farmerUser = { email: "farmer@field4u.be", name: "Farmer Field4U" };
   const farmerStripeId = await setupStripeCustomer(farmerUser);
   const farmerResendId = await setupResendCustomer(farmerUser);
   await prisma.user.create({
@@ -134,7 +135,7 @@ async function seedUsers() {
       termsAcceptedAt: new Date(),
       acceptGeolocation: true,
       plan: UserPlan.PREMIUM,
-      bio: "agriculteur de la plateforme Field4u",
+      bio: "agriculteur de la plateforme Field4U",
       city: "Bruxelles",
       postalCode: "1000",
       stripeCustomerId: farmerStripeId ?? undefined,

@@ -4,8 +4,8 @@ import { stripe } from "@/lib/stripe";
 import SubscribtionDowngradeEmail from "@email/SubscriptionDowngradeEmail";
 import SubscribtionFailedEmail from "@email/SubscriptionFailedEmail";
 import SuccessUpgradeEmail from "@email/SuccessUpgradeEmail";
-import type { User } from "@prisma/client";
-import { UserPlan } from "@prisma/client";
+import type { User } from "@/generated/client";
+import { UserPlan } from "@/generated/client";
 import type Stripe from "stripe";
 import { z } from "zod";
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserRole, Language, UserPlan } from "@prisma/client";
+import { UserRole, Language, UserPlan } from "@/generated/client";
 
 export const CreateUserSchema = z.object({
   name: z.string().min(1, { message: "nom obligatoire" }),

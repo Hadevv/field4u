@@ -17,8 +17,10 @@ const stripePromise = loadStripe(
 
 export function StripePaymentClient({
   clientSecret,
+  setupFutureUsage = false,
 }: {
   clientSecret: string;
+  setupFutureUsage?: boolean;
 }) {
   return (
     <Elements
@@ -34,12 +36,16 @@ export function StripePaymentClient({
         },
       }}
     >
-      <PaymentForm />
+      <PaymentForm setupFutureUsage={setupFutureUsage} />
     </Elements>
   );
 }
 
-function PaymentForm() {
+function PaymentForm({
+  setupFutureUsage = false,
+}: {
+  setupFutureUsage?: boolean;
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
@@ -48,8 +54,8 @@ function PaymentForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      toast.error("impossible de charger stripe", {
-        description: "veuillez rafraîchir la page et réessayer",
+      toast.error("Impossible de charger Stripe", {
+        description: "Veuillez rafraîchir la page et réessayer",
       });
       return;
     }
@@ -57,17 +63,22 @@ function PaymentForm() {
     setIsLoading(true);
 
     try {
-      await stripe.confirmPayment({
+      const result = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/payment/success`,
+          setup_future_usage: setupFutureUsage ? "off_session" : undefined,
         },
       });
-      setIsLoading(false);
+
+      if (result.error) {
+        toast.error(result.error.message || "Une erreur est survenue");
+        setIsLoading(false);
+      }
     } catch (error) {
-      console.error("erreur lors du paiement", error);
-      toast.error("une erreur est survenue", {
-        description: "veuillez réessayer plus tard",
+      console.error("Erreur lors du paiement", error);
+      toast.error("Une erreur est survenue", {
+        description: "Veuillez réessayer plus tard",
       });
       setIsLoading(false);
     }
@@ -77,13 +88,19 @@ function PaymentForm() {
     <div className="w-full max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         <PaymentElement />
+        {setupFutureUsage && (
+          <div className="text-sm text-muted-foreground">
+            Votre méthode de paiement sera enregistrée pour les paiements
+            futurs.
+          </div>
+        )}
         <Button
           size="sm"
           type="submit"
           className="w-full"
           disabled={isLoading || !stripe || !elements}
         >
-          {isLoading ? "traitement en cours..." : "payer"}
+          {isLoading ? "Traitement en cours..." : "Payer"}
         </Button>
       </form>
     </div>

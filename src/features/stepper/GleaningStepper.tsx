@@ -17,17 +17,17 @@ const defaultSteps: GleaningStep[] = [
   {
     id: 1,
     label: "Annonce",
-    description: "détails du glanage",
+    description: "Détails du glanage",
   },
   {
     id: 2,
     label: "Glanage",
-    description: "joindre le glanage",
+    description: "Joindre le glanage",
   },
   {
     id: 3,
     label: "Evaluation",
-    description: "évaluation du glanage",
+    description: "Évaluation du glanage",
   },
 ];
 
@@ -37,6 +37,7 @@ type GleaningStepperProps = {
   variant?: "vertical" | "horizontal";
   gleaningStatus?: string;
   isParticipant?: boolean;
+  initialStep?: number;
 };
 
 export function GleaningStepper({
@@ -45,13 +46,22 @@ export function GleaningStepper({
   variant = "vertical",
   gleaningStatus,
   isParticipant = false,
+  initialStep,
 }: GleaningStepperProps) {
   const pathname = usePathname();
 
   // déterminer l'étape actuelle
   const getCurrentStep = () => {
+    // Si un initialStep est fourni, l'utiliser (utile pour my-gleanings)
+    if (initialStep) return initialStep;
+
+    // Sinon, déterminer en fonction du pathname
     if (pathname.includes("/gleaning/review")) return 3;
     if (pathname.includes("/gleaning")) return 2;
+
+    // Si l'utilisateur est participant et le glanage est terminé, activer l'étape 2
+    if (isParticipant) return 2;
+
     return 1;
   };
 
@@ -85,7 +95,7 @@ export function GleaningStepper({
     // l'étape 2 (glanage) est accessible uniquement si l'utilisateur est participant
     if (stepId === 2) return isParticipant;
 
-    // l'étape 3 (évaluation) n'est accessible que si l'utilisateur est participant
+    // l'étape 3 (évaluation) n'est accessible que si l'utilisateur est participant et le glanage est complété
     if (stepId === 3) return isParticipant && gleaningStatus === "COMPLETED";
 
     return false;
@@ -130,7 +140,7 @@ export function GleaningStepper({
               className="flex items-center"
             >
               <Link href={getStepUrl(currentStep - 1)}>
-                <ChevronLeft className="w-4 h-4 mr-1" /> étape précédente
+                <ChevronLeft className="w-4 h-4 mr-1" /> Étape précédente
               </Link>
             </Button>
           )}
@@ -143,7 +153,7 @@ export function GleaningStepper({
                 className="flex items-center"
               >
                 <Link href={getStepUrl(currentStep + 1)}>
-                  étape suivante <ChevronRight className="w-4 h-4 ml-1" />
+                  Étape suivante <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </Button>
             </div>
@@ -155,7 +165,9 @@ export function GleaningStepper({
 
   return (
     <div className={cn("w-full", className)}>
-      <h3 className="text-sm font-medium text-muted-foreground mb-6">étapes</h3>
+      <h3 className="text-sm font-medium text-muted-foreground mb-6">
+        Étapes du glanage
+      </h3>
 
       <div className="flex flex-col items-start space-y-8 w-full text-sm">
         {steps.map((stepItem, index) => (

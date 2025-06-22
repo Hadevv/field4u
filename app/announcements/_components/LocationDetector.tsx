@@ -67,7 +67,7 @@ export function LocationDetector({
       ) : (
         <MapPin className="h-4 w-4 mr-2" size={size} />
       )}
-      {isLoading ? "localisation..." : "ma position"}
+      {isLoading ? "Localisation..." : "Ma position"}
     </Button>
   );
 }

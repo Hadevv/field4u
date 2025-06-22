@@ -24,7 +24,7 @@ import { SiteConfig } from "@/site-config";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { contactSupportAction } from "./contact-support.action";
 import type { ContactSupportSchemaType } from "./contact-support.schema";
@@ -37,13 +37,21 @@ export type ContactSupportDialogProps = PropsWithChildren<{
 export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
   const [open, setOpen] = useState(false);
   const session = useSession();
-  const email = session.data?.user.email ?? "";
+
   const form = useZodForm({
     schema: ContactSupportSchema,
     defaultValues: {
-      email: email,
+      email: "",
+      subject: "",
+      message: "",
     },
   });
+
+  useEffect(() => {
+    if (session.status === "authenticated" && session.data?.user.email) {
+      form.setValue("email", session.data.user.email);
+    }
+  }, [session.status, session.data?.user.email, form]);
 
   const onSubmit = async (values: ContactSupportSchemaType) => {
     const result = await contactSupportAction(values);
@@ -88,7 +96,7 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
           onSubmit={async (v) => onSubmit(v)}
           className="flex flex-col gap-4"
         >
-          {email ? null : (
+          {session.status === "authenticated" ? null : (
             <FormField
               control={form.control}
               name="email"

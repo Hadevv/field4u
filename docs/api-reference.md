@@ -1,8 +1,8 @@
-# API Field4u v1 - Documentation Complète
+# API Field4U v1 - Documentation Complète
 
 ## Introduction
 
-L'API Field4u v1 est une API publique RESTful sécurisée conçue pour les applications mobiles et les intégrations tierces. Elle permet d'interagir avec la plateforme de glanage tout en protégeant la vie privée des utilisateurs.
+L'API Field4U v1 est une API publique RESTful sécurisée conçue pour les applications mobiles et les intégrations tierces. Elle permet d'interagir avec la plateforme de glanage tout en protégeant la vie privée des utilisateurs.
 
 ## Base URL
 
@@ -431,4 +431,4 @@ curl -b cookies.txt http://localhost:3000/api/v1/profile
 - **Documentation technique** : [app/api/v1/README.md](../app/api/v1/README.md)
 - **Tests API** : [app/api/v1/test-api-requests.md](../app/api/v1/test-api-requests.md)
 - **Issues GitHub** : Système d'issues du repository principal
-- **Contact** : Via la plateforme Field4u
+- **Contact** : Via la plateforme Field4U

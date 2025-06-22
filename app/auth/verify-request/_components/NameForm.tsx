@@ -22,11 +22,11 @@ import { z } from "zod";
 const nameSchema = z.object({
   name: z
     .string()
-    .min(3, "le nom doit contenir au moins 3 caractères")
-    .max(30, "le nom ne peut pas dépasser 30 caractères")
+    .min(3, "Le nom doit contenir au moins 3 caractères")
+    .max(30, "Le nom ne peut pas dépasser 30 caractères")
     .regex(
       /^[a-z0-9_-]+$/i,
-      "le nom ne peut contenir que des lettres, chiffres, tirets et underscores",
+      "Le nom ne peut contenir que des lettres, chiffres, tirets et underscores",
     ),
 });
 
@@ -56,7 +56,7 @@ export function NameForm({
       return resolveActionResult(setName(data));
     },
     onSuccess: () => {
-      toast.success("nom défini avec succès");
+      toast.success("Nom défini avec succès");
       router.push(redirectUrl);
     },
     onError: (error) => {
@@ -75,12 +75,12 @@ export function NameForm({
         name="name"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>votre nom public</FormLabel>
+            <FormLabel>Votre nom public</FormLabel>
             <FormControl>
               <Input {...field} autoFocus />
             </FormControl>
             <FormDescription>
-              ce nom sera affiché publiquement dans l'application
+              Ce nom sera affiché publiquement dans l&lsquo;application
             </FormDescription>
             <FormMessage />
           </FormItem>
@@ -92,7 +92,7 @@ export function NameForm({
         className="mt-4 w-full"
         disabled={mutation.isPending}
       >
-        {mutation.isPending ? "enregistrement..." : "continuer"}
+        {mutation.isPending ? "Enregistrement..." : "Continuer"}
       </Button>
     </Form>
   );

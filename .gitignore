@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+
 /.pnp
 .pnp.js
 
@@ -48,3 +49,5 @@ yarn-error.log*
 
 # dump
 dump.sql
+
+src/generated

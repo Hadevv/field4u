@@ -11,7 +11,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Annonce introuvable - Field4u",
+  title: "Annonce introuvable - Field4U",
   description:
     "L'annonce que vous essayez de modifier n'existe pas ou a été supprimée",
 };
@@ -22,7 +22,7 @@ export default function NotFound() {
       <LayoutHeader>
         <LayoutTitle>Annonce introuvable</LayoutTitle>
         <LayoutDescription>
-          L'annonce que vous essayez de modifier n'existe pas ou a été supprimée
+          L&apos;annonce que vous essayez de modifier n&apos;existe pas ou a été supprimée
         </LayoutDescription>
       </LayoutHeader>
 
@@ -31,9 +31,9 @@ export default function NotFound() {
           <FileX className="h-16 w-16 text-muted-foreground mb-4" />
           <h2 className="text-2xl font-semibold mb-2">Annonce introuvable</h2>
           <p className="text-muted-foreground mb-6 max-w-md">
-            L'annonce que vous essayez de modifier n'existe pas ou a été
-            supprimée. Elle pourrait avoir été supprimée récemment ou vous
-            n'avez pas les permissions pour y accéder.
+            L&apos;annonce que vous essayez de modifier n&apos;existe pas ou a
+            été supprimée. Elle pourrait avoir été supprimée récemment ou vous
+            n&apos;avez pas les permissions pour y accéder.
           </p>
           <div className="flex gap-4">
             <Button asChild variant="outline">

@@ -12,11 +12,12 @@ import { prisma } from "@/lib/prisma";
 import { UserTableContainer } from "@/features/admin/users/UserTableContainer";
 import { isAdmin } from "@/lib/auth/helper";
 import { Plus } from "lucide-react";
-import { Prisma, UserRole } from "@prisma/client";
+import { Prisma, UserRole } from "@/generated/client";
+import { convertDecimal } from "@/lib/format/decimal";
 
 export const metadata = {
-  title: "Gestion des utilisateurs | Field4u Admin",
-  description: "Gérez les utilisateurs de la plateforme Field4u",
+  title: "Gestion des utilisateurs | Field4U Admin",
+  description: "Gérez les utilisateurs de la plateforme Field4U",
 };
 
 export default async function UsersPage(props: PageParams<{}>) {
@@ -59,17 +60,19 @@ export default async function UsersPage(props: PageParams<{}>) {
 
   const totalPages = Math.ceil(totalUsers / pageSize);
 
-  const users = await prisma.user.findMany({
+  const rawUsers = await prisma.user.findMany({
     where: whereClause,
     orderBy: [{ createdAt: "desc" }],
     skip: (page - 1) * pageSize,
     take: pageSize,
   });
 
+  const users = convertDecimal(rawUsers);
+
   return (
     <Layout size="full">
       <LayoutHeader>
-        <LayoutTitle>gestion des utilisateurs</LayoutTitle>
+        <LayoutTitle>Gestion des Utilisateurs</LayoutTitle>
       </LayoutHeader>
       <LayoutContent>
         <Suspense>
@@ -86,7 +89,7 @@ export default async function UsersPage(props: PageParams<{}>) {
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Plus className="mr-2 size-4" />
-                nouvel utilisateur
+                Nouvel Utilisateur
               </Button>
             }
           />

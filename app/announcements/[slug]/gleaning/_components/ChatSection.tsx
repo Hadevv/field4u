@@ -119,10 +119,10 @@ export function ChatSection({
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg font-semibold text-card-foreground">
             <MessageSquare className="h-5 w-5" />
-            discussion
+            Discussion
           </CardTitle>
           <CardDescription className="text-sm text-muted-foreground">
-            le chat est fermé car le glanage est terminé
+            Le chat est fermé car le glanage est terminé
           </CardDescription>
         </CardHeader>
       </Card>
@@ -134,10 +134,10 @@ export function ChatSection({
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg font-semibold text-card-foreground">
           <MessageSquare className="h-5 w-5" />
-          discussion
+          Discussion
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          communiquez avec les participants et le propriétaire
+          Communiquez avec les participants et le propriétaire
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -154,14 +154,14 @@ export function ChatSection({
                 className="flex-1 data-[state=active]:bg-background data-[state=active]:text-foreground"
               >
                 <Users className="h-5 w-5 mr-2" />
-                groupe de glaneurs
+                Groupe de glaneurs
               </TabsTrigger>
               <TabsTrigger
                 value="owner"
                 className="flex-1 data-[state=active]:bg-background data-[state=active]:text-foreground"
               >
                 <UserIcon className="h-5 w-5 mr-2" />
-                propriétaire
+                Propriétaire
               </TabsTrigger>
             </TabsList>
             <TabsContent value="group" className="mt-4">
@@ -213,7 +213,7 @@ export function ChatSection({
               </div>
               <div className="flex gap-2">
                 <Input
-                  placeholder="écrivez votre message..."
+                  placeholder="Écrivez votre message..."
                   value={groupMessage}
                   onChange={(e) => setGroupMessage(e.target.value)}
                   className="bg-background text-foreground border-border"
@@ -318,10 +318,10 @@ export function ChatSection({
             <Lock className="h-12 w-12 mx-auto text-muted-foreground" />
             <div>
               <p className="font-medium mb-1 text-foreground">
-                chat non disponible
+                Chat non disponible
               </p>
               <p className="text-sm text-muted-foreground">
-                le chat sera disponible 24h avant le début du glanage
+                Le chat sera disponible 24h avant le début du glanage
               </p>
             </div>
           </div>
@@ -334,7 +334,7 @@ export function ChatSection({
           className="w-full flex items-center justify-center"
         >
           <Users className="h-5 w-5 mr-2" />
-          nombre de participants ({participantsCount})
+          Nombre de participants ({participantsCount})
         </Button>
       </CardFooter>
     </Card>

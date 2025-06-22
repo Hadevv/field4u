@@ -95,7 +95,7 @@ export function LikeButton({
       disabled={likeMutation.isPending}
     >
       <div className="flex items-center gap-1.5">
-        <Heart className={cn("w-4 h-4", isLiked && "fill-current")} />
+        <Heart size={16} className={cn(isLiked && "fill-current")} />
         {showCount && (
           <span
             className={cn(

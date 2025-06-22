@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter, usePathname } from "next/navigation";
 import { CreateEditFieldDialog } from "./CreateEditFieldDialog";
-import { Field, User, Farm } from "@prisma/client";
+import { Field, User, Farm } from "@/generated/client";
 import { exportToExcel } from "@/lib/export/table-export";
 import {
   Search,
@@ -126,7 +126,7 @@ export function FieldTableContainer({
         <CardHeader className="p-4 md:p-6 pb-0 flex flex-row flex-wrap items-center justify-between gap-4">
           <div>
             <CardTitle className="text-xl text-accent-foreground">
-              liste des champs
+              Liste des Champs
             </CardTitle>
             <CardDescription>
               {totalPages > 0
@@ -147,7 +147,7 @@ export function FieldTableContainer({
               ) : (
                 <RefreshCw className="size-4 mr-2" />
               )}
-              actualiser
+              Actualiser
             </Button>
             <Button
               variant="outline"
@@ -156,7 +156,7 @@ export function FieldTableContainer({
               onClick={handleExport}
             >
               <FileDown className="size-4 mr-2" />
-              exporter
+              Exporter
             </Button>
           </div>
         </CardHeader>
@@ -164,7 +164,7 @@ export function FieldTableContainer({
           <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
             <div className="flex items-center w-full sm:w-80 space-x-2">
               <Input
-                placeholder="rechercher..."
+                placeholder="Rechercher..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="h-9"

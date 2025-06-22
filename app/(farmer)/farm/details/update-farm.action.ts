@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { authAction } from "@/lib/backend/safe-actions";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import { FarmSchema } from "./farm.schema";
 
 export const updateFarmAction = authAction

@@ -76,7 +76,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
       console.error("Erreur lors de la connexion:", error);
       toast.error("Erreur lors de la connexion");
       setAuthError(
-        "une erreur s'est produite lors de la connexion, veuillez réessayer",
+        "Une erreur s&apos;est produite lors de la connexion, veuillez réessayer",
       );
       setIsSubmitting(false);
     }
@@ -94,7 +94,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
     const errorData = await errorResponse.json();
     setAuthError(
       errorData.errorMessage ||
-        "échec de l'authentification, veuillez réessayer",
+        "Échec de l&apos;authentification, veuillez réessayer",
     );
     setIsSubmitting(false);
   };
@@ -124,7 +124,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
           <FormItem>
             {isUsingCredentials ? <FormLabel>Email</FormLabel> : null}
             <FormControl>
-              <Input placeholder="adresse e-mail" {...field} />
+              <Input placeholder="Adresse e-mail" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -140,7 +140,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="mot de passe"
+                    placeholder="Mot de passe"
                     type="password"
                     {...field}
                   />
@@ -160,7 +160,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
             setIsUsingCredentials(true);
           }}
         >
-          utiliser un mot de passe
+          Utiliser un mot de passe
         </Typography>
       )}
 
@@ -171,13 +171,13 @@ export const SignInCredentialsAndMagicLinkForm = () => {
         disabled={isSubmitting}
       >
         {isUsingCredentials
-          ? "connexion avec mot de passe"
-          : "connexion avec un lien magique"}
+          ? "Connexion avec mot de passe"
+          : "Connexion avec un lien magique"}
       </Button>
 
       {isUsingCredentials && (
         <Typography variant="small">
-          mot de passe oublié ?{" "}
+          Mot de passe oublié ?{" "}
           <Typography
             variant="link"
             as="button"
@@ -186,7 +186,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
               setIsUsingCredentials(false);
             }}
           >
-            connexion avec un lien magique
+            Connexion avec un lien magique
           </Typography>
         </Typography>
       )}

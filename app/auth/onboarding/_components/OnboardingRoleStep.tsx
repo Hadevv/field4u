@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/client";
 import { Users } from "lucide-react";
 import { Tractor } from "lucide-react";
 
@@ -12,10 +12,10 @@ export function OnboardingRoleStep({ onSelect }: Props) {
     <section aria-labelledby="role-selection-heading" className="space-y-6">
       <header className="text-center">
         <h2 id="role-selection-heading" className="mb-2 text-2xl font-bold">
-          Rejoignez la communauté Field4u
+          Rejoignez la communauté Field4U
         </h2>
         <p className="text-muted-foreground">
-          Sélectionnez votre profil pour commencer l'aventure
+          Sélectionnez votre profil pour commencer l&apos;aventure
         </p>
       </header>
 

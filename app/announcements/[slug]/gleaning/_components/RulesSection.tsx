@@ -15,10 +15,10 @@ export function RulesSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg font-semibold text-card-foreground">
           <Paperclip className="h-5 w-5" />
-          règles du glanage
+          Règles du glanage
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          consignes importantes à respecter
+          Consignes importantes à respecter
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -29,10 +29,11 @@ export function RulesSection() {
             </div>
             <div>
               <p className="font-medium text-sm text-foreground">
-                respectez les horaires
+                Respectez les horaires
               </p>
               <p className="text-xs text-muted-foreground">
-                arrivez à l'heure indiquée et ne dépassez pas l'heure de fin
+                Arrivez à l&apos;heure indiquée et ne dépassez pas l&apos;heure
+                de fin
               </p>
             </div>
           </div>
@@ -43,10 +44,10 @@ export function RulesSection() {
             </div>
             <div>
               <p className="font-medium text-sm text-foreground">
-                respectez les cultures
+                Respectez les cultures
               </p>
               <p className="text-xs text-muted-foreground">
-                ne récoltez que les produits autorisés par le propriétaire
+                Ne récoltez que les produits autorisés par le propriétaire
               </p>
             </div>
           </div>
@@ -57,10 +58,10 @@ export function RulesSection() {
             </div>
             <div>
               <p className="font-medium text-sm text-foreground">
-                entraide et partage
+                Entraide et partage
               </p>
               <p className="text-xs text-muted-foreground">
-                aidez-vous mutuellement et partagez équitablement les récoltes
+                Aidez-vous mutuellement et partagez équitablement les récoltes
               </p>
             </div>
           </div>

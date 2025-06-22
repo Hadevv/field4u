@@ -13,12 +13,12 @@
     "format": "prettier --write .",
     "ts": "tsc --noEmit",
     "email": "email dev",
-    "mailhog": "start C:\\Users\\ademe\\Desktop\\MailHog_windows_amd64.exe",
+    "mailhog": "start cmd /c \"start C:\\Users\\ademe\\Desktop\\MailHog_windows_amd64.exe && timeout 2 && start http://127.0.0.1:8025/\"",
     "dev:mail": "pnpm run mailhog && next dev --turbopack",
     "stripe-weybhooks": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "vercel-db": "prisma generate && next build",
-    "postinstall": "prisma generate --schema ./prisma/schema",
+    "postinstall": "prisma generate",
     "clean": "next lint --fix && tsc --noEmit && prettier --write .",
     "seed": "tsx prisma/seed/seed.ts",
     "knip": "knip",
@@ -34,12 +34,12 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.1.9",
-    "@auth/prisma-adapter": "^2.7.4",
+    "@auth/prisma-adapter": "2.8.0",
     "@hookform/resolvers": "^3.10.0",
     "@mapbox/search-js-react": "^1.0.0",
     "@neondatabase/serverless": "^1.0.0",
     "@prisma/adapter-neon": "^6.7.0",
-    "@prisma/client": "^6.8.2",
+    "@prisma/client": "6.6.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
@@ -72,7 +72,7 @@
     "@types/nodemailer": "^6.4.17",
     "@uploadthing/react": "^7.3.1",
     "ajv": "^8.17.1",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -91,7 +91,7 @@
     "mapbox-gl": "^3.10.0",
     "mini-svg-data-uri": "^1.4.4",
     "nanoid": "^5.0.9",
-    "next": "15.1.4",
+    "next": "15.3.4",
     "next-auth": "5.0.0-beta.25",
     "next-mdx-remote-client": "^1.0.5",
     "next-plausible": "^3.12.4",
@@ -127,7 +127,7 @@
     "uploadthing": "^7.6.0",
     "use-debounce": "^10.0.4",
     "ws": "^8.18.2",
-    "xlsx": "^0.18.5",
+    "xlsx": "0.20.3",
     "zod": "^3.24.1",
     "zustand": "^5.0.3"
   },
@@ -167,8 +167,8 @@
     "jsdom": "^26.1.0",
     "knip": "^5.42.2",
     "postcss": "^8.4.49",
-    "prettier": "^3.4.2",
-    "prisma": "^6.8.2",
+    "prettier": "^3.5.3",
+    "prisma": "6.6.0",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
@@ -180,8 +180,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "19.0.4",
-      "@types/react-dom": "19.0.2"
+      "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+      "prettier": "3.5.3"
     }
   },
   "lint-staged": {

@@ -85,13 +85,21 @@ export function AnnouncementCard({
             src={imageUrl}
             alt={title}
             fill
-            sizes="180px"
+            sizes="(max-width: 768px) 150px, 180px"
             className="object-cover"
             loading="lazy"
+            quality={85}
+            placeholder="blur"
+            blurDataURL={imageUrl}
+            style={{
+              objectFit: "cover",
+              transform: "translate3d(0, 0, 0)",
+              backfaceVisibility: "hidden",
+            }}
           />
 
           {/* type de culture et statut */}
-          <div className="absolute left-3 bottom-3 flex items-center gap-2 flex-col">
+          <div className="absolute left-3 bottom-3 flex flex-col items-start gap-2">
             <Badge variant="secondary" className="shadow-sm">
               {cropType.name}
             </Badge>
@@ -120,7 +128,7 @@ export function AnnouncementCard({
                 className="h-8 w-8 p-0"
                 title="Localiser sur la carte"
               >
-                <Navigation className="h-4 w-4" />
+                <Navigation size={16} />
               </Button>
             )}
             <LikeButton
@@ -147,7 +155,10 @@ export function AnnouncementCard({
           {/* localisation et dates */}
           <div className="space-y-1.5 mt-auto">
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <MapPin className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+              <MapPin
+                size={14}
+                className="flex-shrink-0 text-muted-foreground"
+              />
               <span className="truncate">
                 {field.city}, {field.postalCode}
               </span>
@@ -155,7 +166,10 @@ export function AnnouncementCard({
 
             {startDate && endDate && (
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Calendar className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+                <Calendar
+                  size={14}
+                  className="flex-shrink-0 text-muted-foreground"
+                />
                 <span>
                   {formatDate(startDate)} - {formatDate(endDate)}
                 </span>

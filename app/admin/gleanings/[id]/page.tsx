@@ -33,16 +33,16 @@ export async function generateMetadata(
 
     if (!gleaning) {
       return {
-        title: "glanage non trouvé | field4u admin",
+        title: "Glanage non trouvé | field4u admin",
       };
     }
 
     return {
       title: `${gleaning.announcement.title} | glanage | field4u admin`,
     };
-  } catch (error) {
+  } catch {
     return {
-      title: "glanage | field4u admin",
+      title: "Glanage | Field4U admin",
     };
   }
 }
@@ -94,13 +94,13 @@ export default async function GleaningDetailsPage(
   return (
     <Layout size="full">
       <LayoutHeader>
-        <LayoutTitle>détails du glanage</LayoutTitle>
+        <LayoutTitle>Détails du glanage</LayoutTitle>
       </LayoutHeader>
       <LayoutActions>
         <Button asChild variant="outline" size="sm">
           <Link href="/admin/gleanings">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            retour aux glanages
+            Retour aux glanages
           </Link>
         </Button>
       </LayoutActions>

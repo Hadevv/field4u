@@ -11,8 +11,11 @@ import {
 import { dialogManager } from "@/features/dialog-manager/dialog-manager-store";
 import { toast } from "sonner";
 import { deleteAccountAction } from "./delete-account.action";
+import { useRouter } from "next/navigation";
 
 export default function DeleteProfilePage() {
+  const router = useRouter();
+
   return (
     <Card>
       <CardHeader>
@@ -31,11 +34,19 @@ export default function DeleteProfilePage() {
             dialogManager.add({
               title: "Supprimer votre compte",
               description: "Êtes-vous sûr de vouloir supprimer votre compte?",
+              confirmText: "SUPPRIMER",
               action: {
                 label: "Supprimer",
                 onClick: async () => {
-                  await deleteAccountAction();
-                  toast.success("Votre compte a été supprimé.");
+                  try {
+                    await deleteAccountAction();
+                    toast.success("Votre compte a été supprimé.");
+                    router.push("/");
+                  } catch (error) {
+                    toast.error(
+                      "Une erreur est survenue lors de la suppression de votre compte.",
+                    );
+                  }
                 },
               },
             });

@@ -4,7 +4,9 @@ import { auth } from "@/lib/auth/helper";
 import { ActionError, action } from "@/lib/backend/safe-actions";
 import { getServerUrl } from "@/lib/server-url";
 import { stripe } from "@/lib/stripe";
+import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import { logger } from "@/lib/logger";
 
 const BuyButtonSchema = z.object({
   priceId: z.string(),
@@ -15,7 +17,33 @@ export const buyButtonAction = action
   .action(async ({ parsedInput: { priceId } }) => {
     const user = await auth();
 
-    const stripeCustomerId = user?.stripeCustomerId ?? undefined;
+    if (!user) {
+      throw new ActionError("vous devez être connecté pour effectuer un achat");
+    }
+
+    let stripeCustomerId = user.stripeCustomerId;
+
+    if (!stripeCustomerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        name: user.name || undefined,
+        metadata: {
+          userId: user.id,
+        },
+      });
+
+      stripeCustomerId = customer.id;
+
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { stripeCustomerId },
+      });
+
+      logger.info(`nouveau customer stripe créé pour abonnement`, {
+        userId: user.id,
+        stripeCustomerId,
+      });
+    }
 
     const price = await stripe.prices.retrieve(priceId);
 

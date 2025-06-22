@@ -1,6 +1,6 @@
-# Field4u - Plateforme de Glanage
+# Field4U - Plateforme de Glanage
 
-Field4u est une plateforme web moderne qui connecte les agriculteurs et les glaneurs, facilitant le processus de glanage grâce à une carte interactive et un système d'annonces structuré.
+Field4U est une plateforme web moderne qui connecte les agriculteurs et les glaneurs, facilitant le processus de glanage grâce à une carte interactive et un système d'annonces structuré.
 
 ## Fonctionnalités principales
 
@@ -155,7 +155,7 @@ Une fois la base de données initialisée, vous pouvez vous connecter avec ces c
 
 ## API Publique
 
-Field4u propose une API REST sécurisée pour les intégrations tierces.
+Field4U propose une API REST sécurisée pour les intégrations tierces.
 
 ### Base URL
 

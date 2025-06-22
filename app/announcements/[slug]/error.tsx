@@ -33,14 +33,14 @@ export default function AnnouncementError({
               <AlertCircle className="h-6 w-6 text-destructive" />
             </div>
           </div>
-          <CardTitle className="text-xl">une erreur est survenue</CardTitle>
+          <CardTitle className="text-xl">Une erreur est survenue</CardTitle>
           <CardDescription>
-            impossible de charger cette annonce ou session de glanage
+            Impossible de charger cette annonce ou session de glanage
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <p className="text-sm text-muted-foreground mb-2">
-            message d'erreur:
+            Message d&apos;erreur:
           </p>
           <div className="bg-muted p-3 rounded-md text-sm overflow-auto">
             {error.message || "erreur inconnue"}
@@ -50,12 +50,12 @@ export default function AnnouncementError({
           <Button asChild variant="outline" size="sm">
             <Link href="/">
               <Home className="h-4 w-4 mr-2" />
-              accueil
+              Accueil
             </Link>
           </Button>
           <Button onClick={reset} size="sm">
             <RefreshCw className="h-4 w-4 mr-2" />
-            réessayer
+            Réessayer
           </Button>
         </CardFooter>
       </Card>

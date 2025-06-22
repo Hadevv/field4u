@@ -1,8 +1,8 @@
-# API Field4u v1 - Documentation Technique Complète
+# API Field4U v1 - Documentation Technique Complète
 
 ## Vue d'ensemble
 
-L'API Field4u v1 est une API publique RESTful sécurisée conçue pour permettre aux développeurs d'applications mobiles et aux intégrations tierces d'interagir avec la plateforme de glanage. Elle offre un accès aux données publiques tout en protégeant rigoureusement la vie privée des utilisateurs.
+L'API Field4U v1 est une API publique RESTful sécurisée conçue pour permettre aux développeurs d'applications mobiles et aux intégrations tierces d'interagir avec la plateforme de glanage. Elle offre un accès aux données publiques tout en protégeant rigoureusement la vie privée des utilisateurs.
 
 ## Caractéristiques de sécurité
 
@@ -691,4 +691,4 @@ k6 run tests/load/api-announcements.js
 
 - **Issues GitHub** : Repository principal
 - **Documentation** : Inline dans le code
-- **Support communautaire** : Via la plateforme Field4u
+- **Support communautaire** : Via la plateforme Field4U
