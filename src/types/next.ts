@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { ReactNode } from "react";
 
@@ -20,6 +21,9 @@ export type PageParams<T extends Record<string, string> = {}> = {
   params: T;
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+// Alias for compatibility with Next.js 15
+export type PageProps = PageParams<any>;
 
 /**
  * @name LayoutParams
