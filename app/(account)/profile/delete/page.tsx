@@ -42,6 +42,7 @@ export default function DeleteProfilePage() {
                     await deleteAccountAction();
                     toast.success("Votre compte a été supprimé.");
                     router.push("/");
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   } catch (error) {
                     toast.error(
                       "Une erreur est survenue lors de la suppression de votre compte.",
