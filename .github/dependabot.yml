@@ -37,9 +37,6 @@ updates:
     labels:
       - "dependencies"
       - "automated"
-    # Reviewers
-    reviewers:
-      - "ademe"
     # Assignees
     assignees:
       - "ademe"

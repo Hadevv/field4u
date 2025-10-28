@@ -156,7 +156,7 @@
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
     "@vitejs/plugin-react": "^4.5.0",
-    "@vitest/ui": "3.1.2",
+    "@vitest/ui": "^2.1.8",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.18.0",
     "eslint-config-next": "15.1.4",
@@ -176,7 +176,7 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.1",
     "unified": "^11.0.5",
-    "vitest": "^3.1.2",
+    "vitest": "^2.1.8",
     "vitest-mock-extended": "^3.1.0"
   },
   "pnpm": {
@@ -186,8 +186,8 @@
     }
   },
   "lint-staged": {
-    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json,mdx}": [
-      "eslint --fix",
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,mdx}": [
+      "eslint --fix --ignore-pattern 'vitest.config.ts'",
       "prettier --write"
     ],
     "*.{json,md,yml}": [
