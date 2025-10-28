@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import { PeriodFilter } from "@/types/announcement";
 import {
   startOfDay,

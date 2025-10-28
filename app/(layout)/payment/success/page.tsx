@@ -9,7 +9,6 @@ import {
 import Link from "next/link";
 import type { PageParams } from "@/types/next";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function SuccessPaymentPage(props: PageParams) {
   return (
     <Layout>

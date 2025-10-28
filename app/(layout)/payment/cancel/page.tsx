@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { buttonVariants } from "@/components/ui/button";
 import {
   Layout,
@@ -16,7 +15,8 @@ export default async function CancelPaymentPage(props: PageParams) {
       <LayoutHeader>
         <LayoutTitle>Paiement annulé</LayoutTitle>
         <LayoutDescription>
-          Votre paiement a été annulé. Si vous voulez toujours faire un don, vous pouvez réessayer ou choisir un autre moyen de paiement.
+          Votre paiement a été annulé. Si vous voulez toujours faire un don,
+          vous pouvez réessayer ou choisir un autre moyen de paiement.
         </LayoutDescription>
       </LayoutHeader>
       <LayoutContent className="flex justify-center">

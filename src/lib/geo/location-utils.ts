@@ -280,7 +280,6 @@ export const LocationService = {
 
         // cache valide pendant 24h
         if (Date.now() - timestamp < CACHE_DURATION) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { timestamp: _, ...result } = parsed;
           return result as GeolocationResult;
         }

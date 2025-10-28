@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react()] as any,
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
