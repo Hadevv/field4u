@@ -12,6 +12,7 @@
     "lint": "next lint --fix",
     "format": "prettier --write .",
     "ts": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "email": "email dev",
     "mailhog": "start cmd /c \"start C:\\Users\\ademe\\Desktop\\MailHog_windows_amd64.exe && timeout 2 && start http://127.0.0.1:8025/\"",
     "dev:mail": "pnpm run mailhog && next dev --turbopack",
