@@ -137,7 +137,7 @@
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@faker-js/faker": "^9.5.0",
-    "@next/bundle-analyzer": "^15.3.2",
+    "@next/bundle-analyzer": "^16.0.1",
     "@next/eslint-plugin-next": "15.1.4",
     "@playwright/test": "^1.52.0",
     "@tailwindcss/typography": "^0.5.16",
