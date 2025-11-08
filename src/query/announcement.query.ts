@@ -95,7 +95,7 @@ export const searchAnnouncementsByTitle = async (searchTerm: string) => {
       WHERE unaccent(lower(a.title)) LIKE unaccent(lower(${searchParam}))
     `;
 
-    return results.map((r) => r.id);
+    return results.map((r: { id: string }) => r.id);
   } catch (error) {
     logger.error("Erreur lors de la recherche par titre avec unaccent:", error);
     try {
@@ -117,7 +117,7 @@ export const searchAnnouncementsByTitle = async (searchTerm: string) => {
         },
       });
 
-      return fallbackResults.map((r) => r.id);
+      return fallbackResults.map((r: { id: string }) => r.id);
     } catch (fallbackError) {
       logger.error("Erreur lors de la tentative de fallback:", fallbackError);
       return [];
@@ -153,7 +153,7 @@ export const searchAnnouncementsByLocation = async (locationTerm: string) => {
         OR f."postal_code" LIKE ${locationParam}
     `;
 
-    return results.map((r) => r.id);
+    return results.map((r: { id: string }) => r.id);
   } catch (error) {
     logger.error(
       "Erreur lors de la recherche par location avec unaccent:",
@@ -190,7 +190,7 @@ export const searchAnnouncementsByLocation = async (locationTerm: string) => {
         },
       });
 
-      return fallbackResults.map((r) => r.id);
+      return fallbackResults.map((r: { id: string }) => r.id);
     } catch (fallbackError) {
       logger.error(
         "Erreur lors de la tentative de fallback pour localisation:",
