@@ -1,0 +1,105 @@
+name: code-quality
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-test:
+    name: unit tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.13.1
+
+      - name: setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: install dependencies
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
+        env:
+          CI: true
+
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.13.1
+
+      - name: setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: install dependencies
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
+        env:
+          CI: true
+
+      - name: run linter
+        run: pnpm lint:ci
+        env:
+          CI: true
+          SKIP_ENV_VALIDATION: "true"
+
+  typescript:
+    name: typeScript check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.13.1
+
+      - name: setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: install dependencies
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
+        env:
+          CI: true
+
+      - name: run typeScript check
+        run: pnpm typecheck
+        env:
+          CI: true
+          SKIP_ENV_VALIDATION: "true"

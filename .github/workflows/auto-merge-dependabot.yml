@@ -1,99 +1,81 @@
-name: Auto-merge Dependabot PRs
+name: auto-merge-dependabot
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+  check_suite:
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  auto-merge:
+  enable-auto-merge:
+    name: enable auto-merge
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
     steps:
-      - name: Check if PR is ready for merge
-        id: check-pr
-        run: |
-          # Check if PR has required status checks
-          if [ "${{ github.event.pull_request.draft }}" == "true" ]; then
-            echo "is_draft=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # Check if PR has conflicts
-          if [ "${{ github.event.pull_request.mergeable_state }}" == "dirty" ]; then
-            echo "has_conflicts=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "is_draft=false" >> $GITHUB_OUTPUT
-          echo "has_conflicts=false" >> $GITHUB_OUTPUT
-
-      - name: Wait for status checks
-        if: steps.check-pr.outputs.is_draft == 'false' && steps.check-pr.outputs.has_conflicts == 'false'
-        run: |
-          echo "Waiting for status checks to complete..."
-          sleep 30
-
-      - name: Auto-merge PR
-        if: steps.check-pr.outputs.is_draft == 'false' && steps.check-pr.outputs.has_conflicts == 'false'
+      - name: enable auto-merge
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const prNumber = context.payload.pull_request?.number || 
+              context.payload.check_suite?.pull_requests?.[0]?.number;
+
+            if (!prNumber) {
+              core.info('No PR number found, skipping');
+              return;
+            }
+
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
+              pull_number: prNumber,
             });
 
-            // Check if all required status checks are passing
-            const { data: statuses } = await github.rest.repos.getCombinedStatusForRef({
+            if (pr.draft) {
+              core.info('PR is draft, skipping');
+              return;
+            }
+
+            if (pr.state !== 'open') {
+              core.info(`PR is ${pr.state}, skipping`);
+              return;
+            }
+
+            const hasAutomergeLabel = pr.labels.some(label => label.name === 'automerge');
+            if (!hasAutomergeLabel) {
+              core.info('PR does not have automerge label, skipping');
+              return;
+            }
+
+            const { data: status } = await github.rest.repos.getCombinedStatusForRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: pr.head.sha,
             });
 
-            const allChecksPassing = statuses.statuses.every(status => 
-              status.state === 'success' || status.state === 'skipped'
-            );
-
-            if (allChecksPassing && pr.mergeable && !pr.draft) {
-              console.log('All checks passing, attempting to merge...');
-              
+            if (status.state === 'success' && pr.mergeable && pr.mergeable_state === 'clean') {
               try {
-                await github.rest.pulls.merge({
+                await github.rest.pulls.enableAutoMerge({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  pull_number: context.payload.pull_request.number,
+                  pull_number: prNumber,
                   merge_method: 'squash',
-                  commit_title: `deps: ${pr.title}`,
-                  commit_message: `Automated dependency update\n\n${pr.body || ''}`,
                 });
-                
-                console.log('PR merged successfully');
+                core.info('✅ Auto-merge enabled');
               } catch (error) {
-                console.error('Failed to merge PR:', error);
-                throw error;
+                if (error.status === 403) {
+                  core.warning('Auto-merge not available. Ensure branch protection allows auto-merge.');
+                } else if (error.status === 405) {
+                  core.info('Auto-merge already enabled or not available for this PR');
+                } else {
+                  core.error(`Failed to enable auto-merge: ${error.message}`);
+                }
               }
             } else {
-              console.log('PR not ready for merge:', {
-                allChecksPassing,
-                mergeable: pr.mergeable,
-                draft: pr.draft,
-              });
+              core.info(`Waiting for checks: status=${status.state}, mergeable=${pr.mergeable}, state=${pr.mergeable_state}`);
             }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Comment on PR
-        if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body: '❌ Auto-merge failed. Please review manually.',
-            });
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

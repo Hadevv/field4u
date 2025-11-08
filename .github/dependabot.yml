@@ -1,53 +1,44 @@
 version: 2
 updates:
-  # Enable version updates for npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: "daily"
       time: "09:00"
-    # Allow up to 5 open pull requests for npm dependencies
-    open-pull-requests-limit: 5
-    # Group updates by dependency type
+    target-branch: "develop"
+    open-pull-requests-limit: 10
+
     groups:
-      # Group all patch updates together
       patch-updates:
-        patterns:
-          - "*"
-        update-types:
-          - "patch"
-      # Group all minor updates together
+        patterns: ["*"]
+        update-types: ["patch"]
       minor-updates:
-        patterns:
-          - "*"
-        update-types:
-          - "minor"
-      # Group major updates for specific packages
+        patterns: ["*"]
+        update-types: ["minor"]
       next-major:
-        patterns:
-          - "next"
-        update-types:
-          - "major"
-    # Auto-merge configuration
+        patterns: ["next"]
+        update-types: ["major"]
+
     commit-message:
-      prefix: "deps"
+      prefix: "🔧 deps"
       include: "scope"
-    # Labels for PRs
+
     labels:
       - "dependencies"
       - "automated"
-    # Assignees
+      - "automerge"
+
     assignees:
-      - "ademe"
-    # Milestone
+      - "Hadevv"
+
     milestone: 1
-    # Rebase strategy
+
     rebase-strategy: "auto"
-    # Allow updates to development dependencies
+
     allow:
+      - dependency-type: "production"
       - dependency-type: "development"
-    # Ignore specific dependencies if needed
+
     ignore:
       - dependency-name: "eslint"
         update-types: ["version-update:semver-major"]
