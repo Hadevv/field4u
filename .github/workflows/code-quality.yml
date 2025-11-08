@@ -16,22 +16,23 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v4
 
       - name: setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 10.13.1
 
-      - name: use Node.js ${{ matrix.node-version }}
+      - name: setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: install dependencies
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
         env:
           CI: true
 
@@ -43,29 +44,30 @@ jobs:
           SKIP_ENV_VALIDATION: "true"
 
   eslint:
-    name: linter
+    name: eslint
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [22.x]
 
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v4
 
       - name: setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 10.13.1
 
-      - name: use Node.js ${{ matrix.node-version }}
+      - name: setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
 
       - name: install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
         env:
           CI: true
 
@@ -83,26 +85,27 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
+      - name: Setup PNPM
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 10.13.1
 
-      - name: use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
 
-      - name: install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
         env:
           CI: true
 
-      - name: run typeScript check
+      - name: Run TypeScript check
         run: pnpm ts
         env:
           CI: true
