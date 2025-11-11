@@ -11,7 +11,7 @@
     "build:no-ts": "next build --no-lint",
     "start": "next start",
     "lint": "next lint --fix",
-    "lint:ci": "next lint",
+    "lint:ci": "next lint .",
     "format": "prettier --write .",
     "ts": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
