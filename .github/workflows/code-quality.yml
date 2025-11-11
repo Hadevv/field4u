@@ -65,7 +65,7 @@ jobs:
           CI: true
 
       - name: run linter
-        run: pnpm lint:ci
+        run: pnpm run lint:ci
         env:
           CI: true
           SKIP_ENV_VALIDATION: "true"

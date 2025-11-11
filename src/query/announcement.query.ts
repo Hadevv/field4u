@@ -82,11 +82,11 @@ export const searchAnnouncementsByTitle = async (searchTerm: string) => {
   try {
     const safeSearchTerm = searchTerm
       .trim()
-      .replace(/[%_'"\\\[\]]/g, "")
+      .replace(/[%_'"\\[\]]/g, "")
       .slice(0, 50);
     const searchParam = `%${safeSearchTerm}%`;
 
-    logger.debug(`Recherche par titre avec terme nettoyé: "${safeSearchTerm}"`);
+    logger.debug(`Search by title with sanitized term: "${safeSearchTerm}"`);
 
     // requete sql brute pour garantir l'utilisation de unaccent
     const results = await prisma.$queryRaw<{ id: string }[]>`
@@ -102,7 +102,7 @@ export const searchAnnouncementsByTitle = async (searchTerm: string) => {
       logger.debug("Tentative de fallback sans unaccent");
       const safeSearchTerm = searchTerm
         .trim()
-        .replace(/[%_'"\\\[\]]/g, "")
+        .replace(/[%_'"\\[²³\]]/g, "")
         .slice(0, 50);
 
       const fallbackResults = await prisma.announcement.findMany({
@@ -136,7 +136,7 @@ export const searchAnnouncementsByLocation = async (locationTerm: string) => {
   try {
     const safeLocationTerm = locationTerm
       .trim()
-      .replace(/[%_'"\\\[\]]/g, "")
+      .replace(/[%_'"\\[²³\]]/g, "")
       .slice(0, 50);
     const locationParam = `%${safeLocationTerm}%`;
 
@@ -164,7 +164,7 @@ export const searchAnnouncementsByLocation = async (locationTerm: string) => {
       logger.debug("Tentative de fallback sans unaccent pour localisation");
       const safeLocationTerm = locationTerm
         .trim()
-        .replace(/[%_'"\\\[\]]/g, "")
+        .replace(/[%_'"\\[²³\]]/g, "")
         .slice(0, 50);
 
       const fallbackResults = await prisma.announcement.findMany({
