@@ -28,8 +28,6 @@ updates:
       - "automated"
       - "automerge"
 
-    milestone: 1
-
     rebase-strategy: "auto"
 
     allow:

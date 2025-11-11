@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "field4u-version": "1.0.0",
   "description": "Field4u",
-  "private": true,
+  "author": "Field4u",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
