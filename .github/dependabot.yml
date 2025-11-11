@@ -6,7 +6,7 @@ updates:
       interval: "daily"
       time: "09:00"
     target-branch: "develop"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 3
 
     groups:
       patch-updates:
