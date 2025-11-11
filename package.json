@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "field4u-version": "1.0.0",
   "description": "Field4u",
-  "private": true,
+  "author": "Field4u",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -159,7 +160,7 @@
     "@typescript-eslint/parser": "^8.19.1",
     "@vitejs/plugin-react": "^5.1.0",
     "@vitest/ui": "^2.1.8",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.22",
     "eslint": "^9.18.0",
     "eslint-config-next": "15.1.4",
     "eslint-plugin-react": "^7.37.3",

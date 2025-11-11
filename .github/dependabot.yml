@@ -28,11 +28,6 @@ updates:
       - "automated"
       - "automerge"
 
-    assignees:
-      - "Hadevv"
-
-    milestone: 1
-
     rebase-strategy: "auto"
 
     allow:

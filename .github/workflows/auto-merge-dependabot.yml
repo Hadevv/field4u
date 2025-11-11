@@ -17,7 +17,7 @@ jobs:
     if: github.actor == 'dependabot[bot]'
 
     steps:
-      - name: enable auto-merge
+      - name: Enable auto-merge
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
               context.payload.check_suite?.pull_requests?.[0]?.number;
 
             if (!prNumber) {
-              core.info('No PR number found, skipping');
+              core.info('No PR number found, skipping.');
               return;
             }
 
@@ -37,18 +37,18 @@ jobs:
             });
 
             if (pr.draft) {
-              core.info('PR is draft, skipping');
+              core.info('PR is draft, skipping.');
               return;
             }
 
             if (pr.state !== 'open') {
-              core.info(`PR is ${pr.state}, skipping`);
+              core.info(`PR is ${pr.state}, skipping.`);
               return;
             }
 
             const hasAutomergeLabel = pr.labels.some(label => label.name === 'automerge');
             if (!hasAutomergeLabel) {
-              core.info('PR does not have automerge label, skipping');
+              core.info('PR does not have automerge label, skipping.');
               return;
             }
 
@@ -58,24 +58,51 @@ jobs:
               ref: pr.head.sha,
             });
 
-            if (status.state === 'success' && pr.mergeable && pr.mergeable_state === 'clean') {
-              try {
-                await github.rest.pulls.enableAutoMerge({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: prNumber,
-                  merge_method: 'squash',
-                });
-                core.info('✅ Auto-merge enabled');
-              } catch (error) {
-                if (error.status === 403) {
-                  core.warning('Auto-merge not available. Ensure branch protection allows auto-merge.');
-                } else if (error.status === 405) {
-                  core.info('Auto-merge already enabled or not available for this PR');
-                } else {
-                  core.error(`Failed to enable auto-merge: ${error.message}`);
-                }
+            if (status.state !== 'success') {
+              core.info(`Checks not successful yet (status=${status.state}).`);
+              return;
+            }
+
+            if (!pr.mergeable || pr.mergeable_state !== 'clean') {
+              core.info(`PR not mergeable yet (state=${pr.mergeable_state}).`);
+              return;
+            }
+
+            // 🎨 Determine commit type for better title formatting
+            let type = 'deps';
+            if (pr.title.toLowerCase().includes('security') || pr.title.toLowerCase().includes('vulnerability')) {
+              type = 'security';
+            }
+
+            const newTitle = `🔀 merge(${pr.head.ref}): ${type}: ${pr.title}`;
+            core.info(`Updating PR title to: "${newTitle}"`);
+
+            try {
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                title: newTitle,
+              });
+            } catch (error) {
+              core.warning(`Failed to update PR title: ${error.message}`);
+            }
+
+            // ✅ Enable auto-merge
+            try {
+              await github.rest.pulls.enableAutoMerge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+              });
+              core.info('✅ Auto-merge enabled successfully.');
+            } catch (error) {
+              if (error.status === 403) {
+                core.warning('⚠️ Auto-merge not available. Check branch protection and allow auto-merge settings.');
+              } else if (error.status === 405) {
+                core.info('ℹ️ Auto-merge already enabled or not available for this PR.');
+              } else {
+                core.error(`❌ Failed to enable auto-merge: ${error.message}`);
               }
-            } else {
-              core.info(`Waiting for checks: status=${status.state}, mergeable=${pr.mergeable}, state=${pr.mergeable_state}`);
             }
